@@ -1,0 +1,11 @@
+@import 'papercss/dist/paper.min.css';
+
+html,
+body {
+  height: 100%;
+}
+
+#root {
+  padding: 1rem 0;
+  height: 100%;
+}

@@ -1,0 +1,10 @@
+{
+  "folders": [
+    {
+      "path": "react-ts-component-patterns"
+    }
+  ],
+  "settings": {
+    "typescript.tsdk": "node_modules/typescript/lib"
+  }
+}
