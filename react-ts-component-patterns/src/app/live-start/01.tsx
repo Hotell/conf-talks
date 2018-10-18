@@ -1,10 +1,17 @@
 import React, { Component } from 'react'
 // ============================================================================
 
+
+// 1. Function
+
+// 2. class + defaultProps
+
+
 // ============================================================================
 export class Example extends Component {
-  static title = 'Render Props'
+  static title = 'React Intro'
   render() {
-    return <>@TODO</>
+    // const view =
+    return <>{/* view */}</>
   }
 }
