@@ -93,3 +93,4 @@ export const Example = () => (
     <Counter />
   </>
 )
+Example.title = 'Stateful/Stateless'

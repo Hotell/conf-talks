@@ -114,6 +114,7 @@ type ExampleState = typeof exampleInitialState
 type ExampleProps = {}
 
 export class Example extends Component<ExampleProps, ExampleState> {
+  static title = 'Controlled'
   state = exampleInitialState
 
   handleCountChange = (count: number) => {

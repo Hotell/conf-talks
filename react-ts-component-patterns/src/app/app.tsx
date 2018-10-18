@@ -14,6 +14,7 @@ export class App extends Component {
         {[Example01, Example02, Example03, Example04, Example05].map(
           (Demo, idx) => (
             <div key={idx} className="paper col col-12">
+              <h4>{Demo.title}</h4>
               <Demo />
             </div>
           )

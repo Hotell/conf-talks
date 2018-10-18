@@ -82,6 +82,7 @@ class IncCountByTwo extends Component<{}, typeof initStateByTwo> {
 }
 
 export class Example extends Component<ExampleProps, ExampleState> {
+  static title = 'Render Prop'
   state = exampleInitialState
 
   handleCountChange = (count: number) => {

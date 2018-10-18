@@ -26,3 +26,4 @@ const name = 'Geecon !'
 // export const Example = () => createElement(Greeter, { greeting, name })
 // export const Example = () => <Greeter greeting={greeting} name={name} />
 export const Example = () => <Greeter {...{ greeting, name }} />
+Example.title = 'React Intro'
