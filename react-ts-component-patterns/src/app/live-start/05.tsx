@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { Counter } from '../04-render-prop-component'
-import { Subtract } from '../types'
 // ============================================================================
 
 // 4. mapped type via conditional types

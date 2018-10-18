@@ -5,8 +5,8 @@ import { Example as Example02 } from './02-stateful-stateless'
 import { Example as Example03 } from './03-controlled-components'
 import { Example as Example04 } from './04-render-prop-component'
 import { Example as Example05 } from './05-high-order-component'
-// import { LiveApp } from './live-finish'
-import { LiveApp } from './live-start'
+import { LiveApp } from './live-finish'
+// import { LiveApp } from './live-start'
 
 export class App extends Component {
   render() {

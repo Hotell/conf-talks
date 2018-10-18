@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Counter } from '../04-render-prop-component'
+import { Counter } from './04'
 import { Subtract } from '../types'
 // ============================================================================
 
@@ -40,7 +40,7 @@ class CounterWannabe extends Component<
   InjectedProps & { colorType?: 'primary' | 'secondary' | 'success' }
 > {
   render() {
-    const { count, onChange, colorType } = this.props
+    const { count, inc, colorType } = this.props
 
     const cssClass = `alert alert-${colorType}`
 
@@ -48,7 +48,7 @@ class CounterWannabe extends Component<
       <div
         style={{ cursor: 'pointer' }}
         className={cssClass}
-        onClick={onChange('inc')}
+        onClick={inc}
       >
         {count}
       </div>

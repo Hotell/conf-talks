@@ -14,7 +14,7 @@ const initialState = { count: 0 }
 const defaultProps = {
   onChange: (value: number) => {}
 }
-class Counter extends Component<Props, State> {
+export class Counter extends Component<Props, State> {
   static defaultProps = defaultProps
 
   state = initialState
@@ -66,9 +66,9 @@ const CounterWithButtons = () => (
   <Counter>
     {({ count, dec, inc }) => (
       <div className="border row">
+        <h5 className="alert alert-warning">{count}</h5>
         <Button onClick={inc}>👍</Button>
         <Button onClick={dec}>👎</Button>
-        <h5 className="alert alert-danger">{count}</h5>
       </div>
     )}
   </Counter>
@@ -92,15 +92,15 @@ export class Example extends Component {
             <div className="border row">
               <Button onClick={inc}>👍</Button>
               <Button onClick={dec}>👎</Button>
-              <h5 className="alert alert-danger">{count}</h5>
+              <h5 className="alert alert-secondary">{count}</h5>
             </div>
           )}
         </Counter>
         <Counter count={this.state.count} onChange={this.handleChange}>
           {({ count, dec, inc }) => (
-            <div className="border row">
-              <h5>{count}</h5>
+            <div className="border row" style={{flexDirection: 'column', alignItems:'center'}}>
               <Button onClick={inc}>👍</Button>
+              <h5>{count}</h5>
               <Button onClick={dec}>👎</Button>
             </div>
           )}
