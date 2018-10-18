@@ -1,47 +1,33 @@
 import React, { Component, ComponentType } from 'react'
 
-import { FuncArguments, Omit } from './types'
+import { FuncArguments, Subtract } from './types'
 import { Counter } from './04-render-prop-component'
 
 type InjectedProps = FuncArguments<Counter['props']['children']>[0]
 
-const withCounter = <OriginalProps extends Partial<InjectedProps>>(
-  Cmp: ComponentType<OriginalProps>
-) => {
-  // type OriginalDefaultProps = DefaultPropsOf<typeof Cmp>
-  type NewProps = Partial<Omit<OriginalProps, keyof InjectedProps>>
-  // Partial<OriginalDefaultProps>
-
-  // Partial<OriginalDefaultProps>
-
-  class WithCounter extends Component<NewProps> {
+const withCounter = <P extends InjectedProps>(Cmp: ComponentType<P>) => {
+  class WithCounter extends Component<Subtract<P, InjectedProps>> {
     static displayName = `WithCounter(${Cmp.name})`
+    static WrappedComponent = Cmp
+
     render() {
-      const props = this.props
-      return (
-        <Counter>
-          {({ count, changeCount }) => {
-            return <Cmp count={count} changeCount={changeCount} {...props} />
-          }}
-        </Counter>
-      )
+      return <Counter>{(props) => <Cmp {...props} {...this.props} />}</Counter>
     }
   }
 
   return WithCounter
 }
 
-const defaultProps = {
-  colorType: 'primary' as 'primary' | 'secondary' | 'success'
-}
-class CounterWannabe extends Component<InjectedProps & typeof defaultProps> {
-  static defaultProps = defaultProps
+type Props = {
+  colorType?: 'primary' | 'secondary' | 'success'
+} & InjectedProps
+class CounterWannabe extends Component<Props> {
   render() {
-    const { count, changeCount, colorType } = this.props
+    const { count, onChange, colorType = 'primary' } = this.props
     const cssClass = `alert alert-${colorType}`
 
     return (
-      <div className={cssClass} onClick={changeCount('inc')}>
+      <div className={cssClass} onClick={onChange('inc')}>
         {count}
       </div>
     )
@@ -63,7 +49,7 @@ export class Example extends Component<ExampleProps, ExampleState> {
   state = exampleInitialState
 
   handleCountChange = (count: number) => {
-    this.setState((prevState) => ({ amount: count }))
+    this.setState(() => ({ amount: count }))
   }
 
   render() {
@@ -73,6 +59,10 @@ export class Example extends Component<ExampleProps, ExampleState> {
         <div>Root count: {amount}</div>
         <ExtendedComponent />
         <ExtendedComponent colorType="success" />
+        <ExtendedComponent.WrappedComponent
+          count={99}
+          onChange={() => console.log.bind(null, 'click')}
+        />
       </div>
     )
   }

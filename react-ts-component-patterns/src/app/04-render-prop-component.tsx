@@ -3,10 +3,10 @@ import React, { Component } from 'react'
 // 1. children as a function
 // =====================
 type Props = {
-  count?: number
   children: (
-    api: State & { changeCount: Counter['changeCount'] }
+    props: State & { onChange: Counter['changeCount'] }
   ) => import('react').ReactChild
+  count?: number
 } & typeof defaultProps
 
 type State = typeof initialState
@@ -20,32 +20,32 @@ export class Counter extends Component<Props, State> {
   static readonly defaultProps = defaultProps
   readonly state = initialState
 
-  isControlled(prop: keyof State) {
-    return this.props[prop] !== undefined
-  }
-
-  getState(state = this.state): State {
+  getState(state = this.state) {
     return {
-      count: this.isControlled('count') ? this.props.count! : state.count
+      count: this.props.count ? this.props.count : state.count
     }
   }
 
   changeCount = (type: 'inc' | 'dec') => {
+    const typeMap = { inc: 1, dec: -1 }
     return () => {
-      const value = type === 'inc' ? +1 : -1
-      this.isControlled('count')
-        ? this.props.onChange(this.getState().count + value)
-        : this.setState(
-            (prevState) => ({ count: prevState.count + value }),
-            () => this.props.onChange(this.getState().count)
-          )
+      const { count, onChange } = this.props
+
+      if (count) {
+        onChange(this.getState().count + typeMap[type])
+      } else {
+        this.setState(
+          (state) => ({ count: state.count + typeMap[type] }),
+          () => onChange(this.getState().count)
+        )
+      }
     }
   }
 
   render() {
     return this.props.children({
       ...this.getState(),
-      changeCount: this.changeCount
+      onChange: this.changeCount
     })
   }
 }
@@ -67,16 +67,14 @@ class IncCountByTwo extends Component<{}, typeof initStateByTwo> {
   }
   render() {
     return (
-      <>
+      <div className="border padding">
         <code>{this.state.count}</code>
         <Counter onChange={this.handleChange}>
-          {({ changeCount }) => (
-            <>
-              <button onClick={changeCount('inc')}>increment by two</button>
-            </>
+          {({ onChange }) => (
+            <button onClick={onChange('inc')}>increment by two</button>
           )}
         </Counter>
-      </>
+      </div>
     )
   }
 }
@@ -96,37 +94,37 @@ export class Example extends Component<ExampleProps, ExampleState> {
         <IncCountByTwo />
         <div>Root count: {amount}</div>
         <Counter>
-          {({ count, changeCount }) => (
-            <>
-              <button onClick={changeCount('inc')}>inc</button>
-              <code>{count}</code>
-              <button onClick={changeCount('dec')}>dec</button>
-            </>
+          {({ count, onChange }) => (
+            <div
+              className="row border padding"
+              style={{ flexFlow: 'column', alignItems: 'center' }}
+            >
+              <button onClick={onChange('inc')}>inc</button>
+              <h3>{count}</h3>
+              <button onClick={onChange('dec')}>dec</button>
+            </div>
           )}
         </Counter>
 
         <Counter count={amount} onChange={this.handleCountChange}>
-          {({ count, changeCount }) => (
-            <>
-              <button onClick={changeCount('inc')}>inc</button>
+          {({ count, onChange }) => (
+            <div className="border padding">
+              <button onClick={onChange('inc')}>inc</button>
               <code>{count}</code>
-              <button onClick={changeCount('dec')}>dec</button>
-            </>
+              <button onClick={onChange('dec')}>dec</button>
+            </div>
           )}
         </Counter>
 
         <Counter onChange={this.handleCountChange}>
-          {({ count, changeCount }) => (
-            <>
-              <button onClick={changeCount('inc')}>inc</button>
+          {({ count, onChange }) => (
+            <div className="border padding">
+              <button onClick={onChange('inc')}>inc</button>
               <code>{count}</code>
-              <button onClick={changeCount('dec')}>dec</button>
-            </>
+              <button onClick={onChange('dec')}>dec</button>
+            </div>
           )}
         </Counter>
-
-        {/* <Counter count={amount} onChange={this.handleCountChange} /> */}
-        {/* <Counter onChange={this.handleCountChange} /> */}
       </div>
     )
   }

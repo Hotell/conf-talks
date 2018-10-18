@@ -39,10 +39,9 @@ import React, { Component } from 'react'
 
 // 2. Controlled component
 // =====================
-type Props = Partial<{
-  count: number
-}> &
-  typeof defaultProps
+type Props = {
+  count?: number
+} & typeof defaultProps
 
 type State = typeof initialState
 
@@ -55,53 +54,35 @@ class Counter extends Component<Props, State> {
   static readonly defaultProps = defaultProps
   readonly state = initialState
 
-  isControlled(prop: keyof State) {
-    return this.props[prop] !== undefined
-  }
-
-  getState(state = this.state): State {
+  getState(state = this.state) {
     return {
-      count: this.isControlled('count') ? this.props.count! : state.count
+      count: this.props.count ? this.props.count : state.count
     }
   }
 
-  changeCount(type: 'inc' | 'dec') {
+  changeCount = (type: 'inc' | 'dec') => {
+    const typeMap = { inc: 1, dec: -1 }
     return () => {
-      const value = type === 'inc' ? +1 : -1
-      this.isControlled('count')
-        ? this.props.onChange(this.getState().count + value)
-        : this.setState(
-            (prevState) => ({ count: prevState.count + value }),
-            () => this.props.onChange(this.getState().count)
-          )
+      const { count, onChange } = this.props
+
+      if (count) {
+        onChange(this.getState().count + typeMap[type])
+      } else {
+        this.setState(
+          (state) => ({ count: state.count + typeMap[type] }),
+          () => onChange(this.getState().count)
+        )
+      }
     }
-  }
-
-  handleInc = () => {
-    this.isControlled('count')
-      ? this.props.onChange(this.getState().count + 1)
-      : this.setState(
-          (prevState) => ({ count: prevState.count + 1 }),
-          () => this.props.onChange(this.getState().count)
-        )
-  }
-
-  handleDec = () => {
-    this.isControlled('count')
-      ? this.props.onChange(this.getState().count - 1)
-      : this.setState(
-          (prevState) => ({ count: prevState.count - 1 }),
-          () => this.props.onChange(this.getState().count)
-        )
   }
 
   render() {
     return (
-      <>
+      <div className="border padding">
         <button onClick={this.changeCount('inc')}>inc</button>
         <code>{this.getState().count}</code>
         <button onClick={this.changeCount('dec')}>dec</button>
-      </>
+      </div>
     )
   }
 }
