@@ -39,51 +39,68 @@ import React, { Component } from 'react'
 
 // 2. Controlled component
 // =====================
-type Props =
-  | {
-      count: number
-      onDec: () => void
-      onInc: () => void
-    }
-  | {
-      _?: never
-    }
+type Props = Partial<{
+  count: number
+}> &
+  typeof defaultProps
+
 type State = typeof initialState
 
 const initialState = { count: 0 }
+const defaultProps = {
+  onChange: (count: number) => {}
+}
 
 class Counter extends Component<Props, State> {
+  static readonly defaultProps = defaultProps
   readonly state = initialState
 
   isControlled(prop: keyof State) {
-    // return this.props ? this.props[prop] !== undefined : false
-    return prop in this.props
+    return this.props[prop] !== undefined
   }
-  getState(): State {
-    console.log(this.props)
+
+  getState(state = this.state): State {
     return {
-      count: 'count' in this.props ? this.props.count : this.state.count
+      count: this.isControlled('count') ? this.props.count! : state.count
+    }
+  }
+
+  changeCount(type: 'inc' | 'dec') {
+    return () => {
+      const value = type === 'inc' ? +1 : -1
+      this.isControlled('count')
+        ? this.props.onChange(this.getState().count + value)
+        : this.setState(
+            (prevState) => ({ count: prevState.count + value }),
+            () => this.props.onChange(this.getState().count)
+          )
     }
   }
 
   handleInc = () => {
-    'count' in this.props
-      ? this.props.onInc()
-      : this.setState((prevState) => ({ count: prevState.count + 1 }))
+    this.isControlled('count')
+      ? this.props.onChange(this.getState().count + 1)
+      : this.setState(
+          (prevState) => ({ count: prevState.count + 1 }),
+          () => this.props.onChange(this.getState().count)
+        )
   }
 
   handleDec = () => {
-    'count' in this.props
-      ? this.props.onDec()
-      : this.setState((prevState) => ({ count: prevState.count - 1 }))
+    this.isControlled('count')
+      ? this.props.onChange(this.getState().count - 1)
+      : this.setState(
+          (prevState) => ({ count: prevState.count - 1 }),
+          () => this.props.onChange(this.getState().count)
+        )
   }
 
   render() {
     return (
       <>
-        <button onClick={this.handleInc}>inc</button>
+        <button onClick={this.changeCount('inc')}>inc</button>
         <code>{this.getState().count}</code>
-        <button onClick={this.handleDec}>dec</button>
+        <button onClick={this.changeCount('dec')}>dec</button>
       </>
     )
   }
@@ -91,31 +108,27 @@ class Counter extends Component<Props, State> {
 // ============================================================================
 
 const exampleInitialState = {
-  rootCount: 0
+  amount: 0
 }
 type ExampleState = typeof exampleInitialState
 type ExampleProps = {}
 
 export class Example extends Component<ExampleProps, ExampleState> {
   state = exampleInitialState
-  handleInc = () => {
-    this.setState((prevState) => ({ rootCount: prevState.rootCount + 1 }))
+
+  handleCountChange = (count: number) => {
+    this.setState((prevState) => ({ amount: count }))
   }
-  handleDec = () => {
-    this.setState((prevState) => ({ rootCount: prevState.rootCount - 1 }))
-  }
+
   render() {
-    const { rootCount } = this.state
+    const { amount } = this.state
     return (
       <div className="row flex-spaces flex-middle">
-        <div>Root count: {rootCount}</div>
+        <div>Root count: {amount}</div>
         <Counter />
-        {/* <Counter count={10} /> */}
-        <Counter
-          count={rootCount}
-          onInc={this.handleInc}
-          onDec={this.handleDec}
-        />
+
+        <Counter count={amount} onChange={this.handleCountChange} />
+        <Counter onChange={this.handleCountChange} />
       </div>
     )
   }
