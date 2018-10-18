@@ -1,9 +1,7 @@
 import React, { Component, ComponentType } from 'react'
-import { Counter } from './04-render-prop-component'
 
-type Omit<T, K> = Pick<T, Exclude<keyof T, K>>
-type FuncArguments<T> = T extends (...any: infer A) => any ? A : never
-type DefaultPropsOf<T> = T extends { defaultProps: infer D } ? D : never
+import { FuncArguments, Omit } from './types'
+import { Counter } from './04-render-prop-component'
 
 type InjectedProps = FuncArguments<Counter['props']['children']>[0]
 
