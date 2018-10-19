@@ -11,7 +11,7 @@ export class LiveApp extends Component {
     return (
       <main className="row">
         {[E1, E2, E3, E4, E5].map((Demo, idx) => (
-          <div key={idx} className="paper col col-12 margin-bottom-large">
+          <div key={idx} className="paper col col-12" style={{marginBottom:'80vh'}}>
             <h4>{Demo.title}</h4>
             <Demo />
           </div>
