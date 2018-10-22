@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button } from './02'
+import { Button } from './02-stateless-stateful'
 // ============================================================================
 
 type State = typeof initialState

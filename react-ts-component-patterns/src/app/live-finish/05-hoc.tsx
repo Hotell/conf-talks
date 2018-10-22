@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Counter } from './04'
+import { Counter } from './04-render-prop'
 import { Subtract } from '../types'
 // ============================================================================
 
