@@ -1,0 +1,6 @@
+@import 'papercss/dist/paper.min.css';
+
+pre {
+  overflow: scroll;
+  max-height: 150px;
+}

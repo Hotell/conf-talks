@@ -1,0 +1,32 @@
+{
+  "name": "v2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Martin Hochel <hochelmartin@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "parcel src/index.html",
+    "test": "jest --watch",
+    "test-e2e": "testcafe chrome ./e2e/tests -a 'yarn start'"
+  },
+  "dependencies": {
+    "@types/react": "16.4.18",
+    "@types/react-dom": "16.0.9",
+    "axios": "0.18.0",
+    "papercss": "1.6.0",
+    "react": "16.5.2",
+    "react-dom": "16.5.2"
+  },
+  "devDependencies": {
+    "@types/enzyme": "3.1.14",
+    "@types/enzyme-adapter-react-16": "1.0.3",
+    "@types/jest": "23.3.7",
+    "enzyme": "3.7.0",
+    "enzyme-adapter-react-16": "1.6.0",
+    "jest": "23.6.0",
+    "parcel-bundler": "1.10.3",
+    "testcafe": "0.23.0",
+    "ts-jest": "23.10.4",
+    "typescript": "3.1.3"
+  }
+}

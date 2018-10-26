@@ -2,6 +2,9 @@
   "folders": [
     {
       "path": "react-ts-component-patterns"
+    },
+    {
+      "path": "from-zero-to-hero-with-react-ts"
     }
   ],
   "settings": {
