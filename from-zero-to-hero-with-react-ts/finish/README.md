@@ -1,62 +1,27 @@
-# V2
-
-## Agenda:
-
-1.  What is React
-2.  What is TypeScript
-3.  What are we gonna build ( explain architecture )
-4.  Hands down, chin up!
-5.  Recap and finish him!
+# From Zero To Hero with React and TypeScript
 
 ## Links
 
-- [Intro Slides](https://docs.google.com/presentation/d/e/2PACX-1vSu5B4Q-3qxcvsQ7HauMAqJmlpQr_cPCU69LnVZxIvl4nze6uhR3UzL8mHzFYnWlLoGOht5Ugz1lOhS/pub?start=false&loop=false&delayms=3000)
-- [React + TS blogposts](https://medium.com/@martin_hotell/latest)
+- [React + TypeScript blogposts](https://medium.com/@martin_hotell/latest)
 - [Building a company around TypeScript](https://medium.com/ionic-and-the-mobile-web/building-a-company-around-typescript-5301aaf42007)
 
-## API types:
+## Tasks:
 
-```ts
-export interface GithubUserRepo {
-  name: string
-  html_url: string
-  description: string
-}
+- run app `yarn start`
+- run tests `yarn test`
+- run e2e tests `yarn test-e2e` (make sure your app is running in different terminal)
 
-export interface GithubUser {
-  login: string
-  id: 1
-  node_id: string
-  avatar_url: string
-  gravatar_id: string
-  url: string
-  html_url: string
-  followers_url: string
-  following_url: string
-  gists_url: string
-  starred_url: string
-  subscriptions_url: string
-  organizations_url: string
-  repos_url: string
-  events_url: string
-  received_events_url: string
-  type: string
-  site_admin: false
-  name: string
-  company: string
-  blog: string
-  location: string
-  email: string
-  hireable: false
-  bio: string
-  public_repos: number
-  public_gists: number
-  followers: number
-  following: number
-  created_at: string
-  updated_at: string
-}
-```
+## Agenda:
+
+1.  Intro
+2.  Environment Setup
+3.  TypeScript
+4.  React
+5.  What are we gonna build ( explain architecture )
+6.  Hands down, chin up!
+7.  Unit testing
+8.  E2E testing
+9.  Recap and finish him!
 
 ## Architecture
 
@@ -64,7 +29,9 @@ export interface GithubUser {
 
 ---
 
-# Code session
+# Live Code session
+
+👉 Start in `./start` folder
 
 ## Phase 1
 
@@ -486,7 +453,9 @@ export class UserProfile extends Component<Props> {
 
     return (
       <div>
-        {bio.avatar_url && <img src={bio.avatar_url} className="img-rounded img-responsive" />}
+        {bio.avatar_url && (
+          <img src={bio.avatar_url} className="img-rounded img-responsive" />
+        )}
 
         <ul>
           {bio.name && <li>Name: {bio.name}</li>}
@@ -537,7 +506,9 @@ export class UserRepos extends Component<Props> {
                     <a href={repo.html_url}>{repo.name}</a>
                   </h4>
                 )}
-                {repo.description && <p className="card-text">{repo.description}</p>}
+                {repo.description && (
+                  <p className="card-text">{repo.description}</p>
+                )}
               </div>
             </div>
           ))}
@@ -572,9 +543,11 @@ export class UserService {
   }
 
   getProfile(username: string) {
-    return Promise.all([this.getUser(username), this.getRepos(username)]).then(([bio, repos]) => {
-      return { bio, repos }
-    })
+    return Promise.all([this.getUser(username), this.getRepos(username)]).then(
+      ([bio, repos]) => {
+        return { bio, repos }
+      }
+    )
   }
 }
 ```
