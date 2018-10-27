@@ -4,6 +4,6 @@
     `git clean -df && rm -rf dist .cache`
 
 2.  copy cheatsheet
-    `cp -R ../v2/__cheatsheet__ .`
+    `cp -R ../finish/__cheatsheet__ .`
 
 3.  START !
