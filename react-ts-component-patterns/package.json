@@ -20,6 +20,7 @@
     "@martin_hotell/rex-tils": "2.0.0",
     "papercss": "1.5.4",
     "react": "16.5.2",
-    "react-dom": "16.5.2"
+    "react-dom": "16.5.2",
+    "tslib": "1.9.3"
   }
 }
