@@ -1,22 +1,36 @@
 import React, { Component } from 'react'
+
+import { FunctionalComponent } from '../types'
 // ============================================================================
 
-type Props = Partial<typeof defaultProps> & { name: string }
+type Props = typeof defaultProps & { name: string }
+
 const defaultProps = { greeting: 'Hello' }
 
-// const Greet = ({greeting = defaultProps.greeting, name}: Props) => <div>{greeting}, {name}</div>
+// 1. Functional Component + defaultProps
 
-class Greet extends Component<Props> {
-  static defaultProps = defaultProps
-  render() {
-    const { greeting, name } = this.props
-    return (
-      <div>
-        {greeting}, {name}
-      </div>
-    )
-  }
-}
+const Greet = (({ greeting, name }: Props) => {
+  return (
+    <div>
+      {greeting}, {name}
+    </div>
+  )
+}) as FunctionalComponent<Props, typeof defaultProps>
+Greet.defaultProps = defaultProps
+
+// 2. Class Component + defaultProps
+
+// class Greet extends Component<Props> {
+//   static defaultProps = defaultProps
+//   render() {
+//     const { greeting, name } = this.props
+//     return (
+//       <div>
+//         {greeting}, {name}
+//       </div>
+//     )
+//   }
+// }
 
 // ============================================================================
 export class Example extends Component {

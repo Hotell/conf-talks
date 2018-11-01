@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 // ============================================================================
 
 
-// 1. Function
+// 1. Functional Component + defaultProps
 
-// 2. class + defaultProps
+// 2. Class Component + defaultProps
 
 
 // ============================================================================
