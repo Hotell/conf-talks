@@ -9,3 +9,5 @@ export type FunctionalComponent<P extends object,DP extends object = never,Final
   (props:FinalProps): import('react').ReactElement<R>
   defaultProps?: DP
 }
+
+export type ExtractFuncArguments<T> = T extends (...args: infer A) => any ? A : never

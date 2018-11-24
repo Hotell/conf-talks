@@ -1,19 +1,25 @@
-import React, { Component, ComponentProps } from 'react'
+import React, { Component, ComponentType, ComponentProps } from 'react'
+import { ElementConfig, Diff } from '@martin_hotell/rex-tils'
+
 import { Counter } from './04-render-prop'
 import { Subtract, ExtractFuncArguments } from '../types'
+// ===========================================
+
 // ============================================================================
 
-type InjectedProps = ExtractFuncArguments<ComponentProps<typeof Counter>['children']>[0]
+type InjectedProps = ExtractFuncArguments<
+  ComponentProps<typeof Counter>['children']
+>[0]
 type ExtendedProps = { maxCount?: number }
 
-const withCounter = <P extends InjectedProps>(Cmp: React.ComponentType<P>) => {
+const withCounter = <P extends InjectedProps>(Cmp: ComponentType<P>) => {
   class WithCounter extends Component<
     Subtract<P, InjectedProps> & ExtendedProps
   > {
     static displayName = `WithCounter(${Cmp.name})`
 
     render() {
-      const { maxCount, ...passThroughProps } = this.props
+      const { maxCount, ...passThroughProps } = this.props as ExtendedProps
 
       return (
         <Counter>
@@ -23,8 +29,7 @@ const withCounter = <P extends InjectedProps>(Cmp: React.ComponentType<P>) => {
                 You've reached maximum count! GO HOME {maxCount}
               </p>
             ) : (
-              // https://github.com/Microsoft/TypeScript/issues/28636
-              <Cmp  {...injectedProps} {...passThroughProps as P}  />
+              <Cmp {...injectedProps} {...passThroughProps as P} />
             )
           }
         </Counter>
@@ -35,27 +40,29 @@ const withCounter = <P extends InjectedProps>(Cmp: React.ComponentType<P>) => {
   return WithCounter
 }
 
-class CounterWannabe extends Component<
-  InjectedProps & { colorType?: 'primary' | 'secondary' | 'success' }
-> {
+type CounterProps = InjectedProps & typeof defaultProps
+
+const defaultProps = {
+  colorType: 'primary' as 'primary' | 'secondary' | 'success'
+}
+class CounterWannabe extends Component<CounterProps> {
+  static defaultProps = defaultProps
   render() {
     const { count, inc, colorType } = this.props
 
     const cssClass = `alert alert-${colorType}`
 
     return (
-      <div
-        style={{ cursor: 'pointer' }}
-        className={cssClass}
-        onClick={inc}
-      >
+      <div style={{ cursor: 'pointer' }} className={cssClass} onClick={inc}>
         {count}
       </div>
     )
   }
 }
 
-const ExtendedComponent = withCounter(CounterWannabe)
+const ExtendedComponent = withCounter(CounterWannabe as React.ComponentType<
+  JSX.LibraryManagedAttributes<typeof CounterWannabe, CounterProps>
+>)
 
 // ============================================================================
 export class Example extends Component {
