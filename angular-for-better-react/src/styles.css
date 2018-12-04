@@ -1,0 +1,7 @@
+@import 'papercss/dist/paper.min.css';
+
+a.active {
+  color: green;
+  background-color: yellow;
+  font-weight: bold;
+}

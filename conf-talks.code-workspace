@@ -5,9 +5,12 @@
     },
     {
       "path": "from-zero-to-hero-with-react-ts"
+    },
+    {
+      "path": "angular-for-better-react"
     }
   ],
   "settings": {
-    "typescript.tsdk": "node_modules/typescript/lib"
+
   }
 }
