@@ -31,21 +31,24 @@ export class RouterDemo extends Component<Props> {
           ))}
         </ul>
 
-        {/* // START */}
+        {/*
+          // START
+          // =====
+        */}
 
-        <Switch>
+        {/* <Switch>
           <Route exact path={this.props.match.url} component={Home} />
           <Route path={`${this.props.match.url}/about`} component={About} />
           <Route path={`${this.props.match.url}/topics`} component={Topics} />
           <Route component={NotFound} />
-        </Switch>
+        </Switch> */}
 
         {/*
           // FINISH
           // 1. with config
           // ==============
         */}
-        {/* <RouterOutlet routes={routes} /> */}
+        <RouterOutlet routes={routes} />
       </>
     )
   }

@@ -38,15 +38,23 @@ export class Topics extends Component<Props> {
           ))}
         </ul>
 
-        <Switch>
+        {/*
+        // START
+        // =====
+        */}
+        {/* <Switch>
           <Route path={`${this.props.match.path}/:topicId`} component={Topic} />
-        </Switch>
+        </Switch> */}
 
         {/* // 1. use injected routes for outlet */}
         {/* <RouterOutlet routes={this.props.routes} /> */}
 
+        {/*
+        // FINISH
+        // ======
+        */}
         {/* // 2. use local routers config when lazy loading */}
-        {/* <RouterOutlet routes={routes} /> */}
+        <RouterOutlet routes={routes} />
       </div>
     )
   }

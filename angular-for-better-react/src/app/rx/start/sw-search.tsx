@@ -27,7 +27,10 @@ class SwSearch extends Component<Props, State> {
   handleChange = (ev: ChangeEvent<HTMLInputElement>) => {
     const { value: term } = ev.target
 
-    console.log(term)
+    console.warn(
+      'WARNING, if you call http here, you may crash your browser 💥',
+      term
+    )
   }
 
   doSearch(term: string): Promise<People[]> {
