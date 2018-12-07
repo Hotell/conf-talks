@@ -5,14 +5,14 @@ import React, {
   ComponentType,
   ExoticComponent,
   ReactChild,
-  ReactNode,
+  ReactNode
 } from 'react'
 import {
   RouteProps,
   Route,
   Switch,
   RouteComponentProps,
-  withRouter,
+  withRouter
 } from 'react-router-dom'
 
 export type RouteConfig = Pick<RouteProps, 'exact' | 'path'> & {
@@ -27,7 +27,7 @@ export type RouterOutletProps = {
 const LazyRoute = ({
   isExotic,
   fallback,
-  children,
+  children
 }: {
   isExotic?: boolean
   children: ReactChild
@@ -38,9 +38,10 @@ const LazyRoute = ({
   ) : (
     (children as JSX.Element)
   )
+
 LazyRoute.defaultProps = {
   isExotic: false,
-  fallback: 'Loading...',
+  fallback: 'Loading...'
 }
 
 class RouterOutlet extends Component<RouterOutletProps> {
@@ -69,7 +70,7 @@ class RouterOutlet extends Component<RouterOutletProps> {
 
     return (
       <Switch>
-        {routes.map(route => {
+        {routes.map((route) => {
           const path = String(route.path)
           const isCatchAll = route.path === '**'
           const hasChildren = Boolean(route.children)
@@ -87,7 +88,7 @@ class RouterOutlet extends Component<RouterOutletProps> {
             return (
               <Route
                 key={normalizedRoute}
-                render={props => <Cmp {...props} />}
+                render={(props) => <Cmp {...props} />}
               />
             )
           }
@@ -95,7 +96,7 @@ class RouterOutlet extends Component<RouterOutletProps> {
           if (hasChildren) {
             return (
               <Route path={normalizedRoute} key={normalizedRoute}>
-                {props => (
+                {(props) => (
                   <LazyRoute isExotic={isExotic}>
                     <Cmp {...props} routes={route.children} />
                   </LazyRoute>
@@ -109,7 +110,7 @@ class RouterOutlet extends Component<RouterOutletProps> {
               key={normalizedRoute}
               exact={isExact}
               path={normalizedRoute}
-              render={props => (
+              render={(props) => (
                 <LazyRoute isExotic={isExotic}>
                   <Cmp {...props} />
                 </LazyRoute>

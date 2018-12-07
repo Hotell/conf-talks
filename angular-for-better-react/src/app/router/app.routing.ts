@@ -5,8 +5,8 @@ import { RouteConfig } from '../../lib/rr-ear'
 import Home from './home'
 import NotFound from './not-found'
 import About from './about'
-import { Topics } from './topics/topics'
-import { Topic } from './topics/topic'
+// import { Topics } from './topics/topics'
+// import { Topic } from './topics/topic'
 
 export const routes: RouteConfig[] = [
   {
@@ -19,18 +19,22 @@ export const routes: RouteConfig[] = [
   },
   {
     path: 'topics',
-    component: Topics,
-    children: [
-      {
-        path: '',
-        component: () => createElement('p', {}, 'Please select a topic.')
-      },
-      {
-        path: ':topicId',
-        component: Topic
-      }
-    ]
+    component: lazy(() => import('./topics'))
   },
+  // {
+  //   path: 'topics',
+  //   component: Topics,
+  //   children: [
+  //     {
+  //       path: '',
+  //       component: () => createElement('p', {}, 'Please select a topic.')
+  //     },
+  //     {
+  //       path: ':topicId',
+  //       component: Topic
+  //     }
+  //   ]
+  // },
   {
     path: '**',
     component: NotFound

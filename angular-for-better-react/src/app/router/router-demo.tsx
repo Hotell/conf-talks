@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { NavLink, Switch, Route } from 'react-router-dom'
-import { RouterOutlet } from '../../lib/rr-ear'
+import { NavLink, Switch, Route, Link } from 'react-router-dom'
+import { RouterOutlet, RouterLink } from '../../lib/rr-ear'
 
 import { routes } from './app.routing'
 import Home from './home'
@@ -16,12 +16,39 @@ const links = (path: string) => [
   { path: `${path}/topics`, title: `Topics` },
   { path: `${path}/i-dont-exist`, title: `Not found` }
 ]
+const relativeLinks = [
+  { path: '', title: `Home`, fragment: 'boo-ya' },
+  { path: './about', title: `About`, preserveFragment: true },
+  { path: `topics`, title: `Topics`, queryParams: { one: 1, two: 2 } },
+  {
+    path: '/observables',
+    title: 'go to rx',
+    queryParamsHandling: 'preserve' as 'preserve'
+  },
+  { path: 'i-dont-exist', title: `Not found` }
+]
 
 export class RouterDemo extends Component<Props> {
   render() {
+    console.log({ hash: this.props.location.hash })
     return (
       <>
         <ul>
+          {relativeLinks.map((link) => (
+            <li key={link.path}>
+              <RouterLink
+                to={link.path}
+                queryParams={link.queryParams}
+                queryParamsHandling={link.queryParamsHandling || 'default'}
+                preserveFragment={link.preserveFragment}
+                fragment={link.fragment}
+              >
+                {link.title}
+              </RouterLink>
+            </li>
+          ))}
+        </ul>
+        {/* <ul>
           {links(this.props.match.url).map((link) => (
             <li key={link.path}>
               <NavLink exact={Boolean(link.exact)} to={link.path}>
@@ -29,7 +56,7 @@ export class RouterDemo extends Component<Props> {
               </NavLink>
             </li>
           ))}
-        </ul>
+        </ul> */}
 
         {/*
           // START

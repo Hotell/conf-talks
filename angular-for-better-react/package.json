@@ -8,7 +8,7 @@
     "start": "parcel ./src/index.html"
   },
   "devDependencies": {
-    "@types/react": "16.7.11",
+    "@types/react": "16.7.13",
     "@types/react-dom": "16.0.11",
     "@types/react-router-dom": "4.3.1",
     "parcel-bundler": "1.10.3",
