@@ -13,5 +13,5 @@ In this live coding session we will cover all React Component patterns technique
 ### [Geecon 2018 Prague](https://2018.geecon.cz/schedule-day2/)
 
 - [📄 Slides](https://speakerdeck.com/martin_hotell/ultimate-react-component-patterns-with-typescript)
-- WIP: [🎥 Video]()
+- [🎥 Video](https://www.youtube.com/watch?v=_PBQ3if6Fmg&index=9&list=PLc3XlS7BqcAE0Hs37Omw4D-Z0xhBspnGB&t=0s)
 - [⌨️ Code](./src/live-finish) + `yarn start` from root
