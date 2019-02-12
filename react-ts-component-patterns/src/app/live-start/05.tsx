@@ -1,21 +1,40 @@
-import React, { Component } from 'react'
+import React, { Component, ComponentProps } from 'react'
+import { Counter } from '../live-finish/04-render-prop';
 // ============================================================================
 
-// 4. mapped type via conditional types
+// 4. injected props + mapped type via conditional types explanation
+type InjectedProps = Parameters<ComponentProps<typeof Counter>['children']>[0]
 
-// 5. injected
-
-// 6. extended { maxCount?: number }
+// 5. extended { maxCount?: number }
+// type ExtendedProps = { maxCount?: number }
 
 
 // 3. withCounter
 
 
 // 1. CounterWannabe
-// { colorType?: 'primary' | 'secondary' | 'success' }
+//  a. InjectedProps
+//  b. { colorType?: ColorTypes } -> passThrough in withCounter
+const CounterWannabe = (props: InjectedProps) => {
+
+    const { count, inc/* , colorType */ } = props
+    const classes = `alert alert-${''}`
+
+    return (
+      <div
+        style={{ cursor: 'pointer' }}
+        className={classes}
+        onClick={inc}
+      >
+        {count}
+      </div>
+    )
+
+}
 
 
 // 2. ExtendedComponent
+// const ExtendedComponent = withCounter(CounterWannabe)
 
 // ============================================================================
 export class Example extends Component {
@@ -25,8 +44,16 @@ export class Example extends Component {
       <>
         {/*
         3. types of ExtendedComponent
+        // - ExtendedComponent
+        // - ExtendedComponent with colorTypes
+        // - ExtendedComponent with maxCount
         */}
       </>
     )
   }
 }
+
+
+// ============================================================================
+// Helpers
+type ColorTypes = 'primary' | 'secondary' | 'success'

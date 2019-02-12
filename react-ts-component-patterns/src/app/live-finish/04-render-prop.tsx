@@ -7,13 +7,14 @@ type Props = {
   children: (
     props: State & { inc: Counter['handleInc']; dec: Counter['handleDec'] }
   ) => React.ReactChild
-  count?: number
-} & typeof defaultProps
+} & Partial<State> &
+  typeof defaultProps
 
 const initialState = { count: 0 }
 const defaultProps = {
   onChange: (value: number) => {}
 }
+
 export class Counter extends Component<Props, State> {
   static defaultProps = defaultProps
 
@@ -21,14 +22,14 @@ export class Counter extends Component<Props, State> {
 
   getState() {
     return {
-      count: this.props.count ? this.props.count : this.state.count
+      count: this.props.count != null ? this.props.count : this.state.count
     }
   }
 
   handleChange = (type: 'inc' | 'dec') => () => {
     const typeMap = { inc: 1, dec: -1 }
 
-    if (this.props.count) {
+    if (this.props.count != null) {
       this.props.onChange(this.getState().count + typeMap[type])
     } else {
       this.setState(
@@ -86,25 +87,38 @@ export class Example extends Component {
     return (
       <>
         <h3>Root count: {this.state.count}</h3>
-        <CounterWithButtons />
-        <Counter>
-          {({ count, dec, inc }) => (
-            <div className="border row">
-              <Button onClick={inc}>👍</Button>
-              <Button onClick={dec}>👎</Button>
-              <h5 className="alert alert-secondary">{count}</h5>
-            </div>
-          )}
-        </Counter>
-        <Counter count={this.state.count} onChange={this.handleChange}>
-          {({ count, dec, inc }) => (
-            <div className="border row" style={{flexDirection: 'column', alignItems:'center'}}>
-              <Button onClick={inc}>👍</Button>
-              <h5>{count}</h5>
-              <Button onClick={dec}>👎</Button>
-            </div>
-          )}
-        </Counter>
+
+        <section>
+          <h5>Uncontrolled</h5>
+          <Counter>
+            {({ count, dec, inc }) => (
+              <div className="border row">
+                <Button onClick={inc}>👍</Button>
+                <Button onClick={dec}>👎</Button>
+                <h5 className="alert alert-secondary">{count}</h5>
+              </div>
+            )}
+          </Counter>
+
+          <h5>Uncontrolled + Encapsulated</h5>
+          <CounterWithButtons />
+        </section>
+
+        <section>
+          <h5>Controlled</h5>
+          <Counter count={this.state.count} onChange={this.handleChange}>
+            {({ count, dec, inc }) => (
+              <div
+                className="border row"
+                style={{ flexDirection: 'column', alignItems: 'center' }}
+              >
+                <Button onClick={inc}>👍</Button>
+                <h5>{count}</h5>
+                <Button onClick={dec}>👎</Button>
+              </div>
+            )}
+          </Counter>
+        </section>
       </>
     )
   }

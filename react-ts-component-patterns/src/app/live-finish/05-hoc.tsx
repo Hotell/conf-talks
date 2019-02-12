@@ -1,9 +1,9 @@
 import React, { Component, ComponentProps } from 'react'
 import { Counter } from './04-render-prop'
-import { Subtract, ExtractFuncArguments } from '../types'
+import { Subtract } from '../types'
 // ============================================================================
 
-type InjectedProps = ExtractFuncArguments<ComponentProps<typeof Counter>['children']>[0]
+type InjectedProps = Parameters<ComponentProps<typeof Counter>['children']>[0]
 type ExtendedProps = { maxCount?: number }
 
 const withCounter = <P extends InjectedProps>(Cmp: React.ComponentType<P>) => {
@@ -35,24 +35,23 @@ const withCounter = <P extends InjectedProps>(Cmp: React.ComponentType<P>) => {
   return WithCounter
 }
 
-class CounterWannabe extends Component<
-  InjectedProps & { colorType?: 'primary' | 'secondary' | 'success' }
-> {
-  render() {
-    const { count, inc, colorType } = this.props
+const CounterWannabe = (props:
+  InjectedProps & { colorType?: ColorTypes }
+) => {
+    const { count, inc, colorType } = props
 
-    const cssClass = `alert alert-${colorType}`
+    const classes = `alert alert-${colorType}`
 
     return (
       <div
         style={{ cursor: 'pointer' }}
-        className={cssClass}
+        className={classes}
         onClick={inc}
       >
         {count}
       </div>
     )
-  }
+
 }
 
 const ExtendedComponent = withCounter(CounterWannabe)
@@ -70,3 +69,7 @@ export class Example extends Component {
     )
   }
 }
+
+// ============================================================================
+// Helpers
+type ColorTypes = 'primary' | 'secondary' | 'success'

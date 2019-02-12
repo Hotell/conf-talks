@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
 // ============================================================================
-
 // 1. Button
+// Stateless
+type ButtonProps = {}
 
 
 // ============================================================================
-
-
 // 2. Counter
+// Stateful
+// a) class
+// b) hooks
+
+type Props = {}
 
 // ============================================================================
 export class Example extends Component {
@@ -26,4 +30,4 @@ export class Example extends Component {
 // helpers
 
 // Button color props
-// 'primary' | 'secondary' | 'success' | 'warning' | 'danger'
+type ColorVariants = 'primary' | 'secondary' | 'success' | 'warning' | 'danger'

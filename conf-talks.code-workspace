@@ -11,6 +11,7 @@
     }
   ],
   "settings": {
+    "typescript.tsdk": "react-ts-component-patterns/node_modules/typescript/lib"
 
   }
 }
