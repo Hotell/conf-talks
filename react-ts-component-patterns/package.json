@@ -7,20 +7,20 @@
   "license": "MIT",
   "scripts": {
     "start": "parcel ./src/index.html",
-    "format": "prettier --write \"**/*.{ts,tsx,md,css,less,sass,scss}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md,css,less,scss}\""
   },
   "devDependencies": {
-    "@types/react": "16.7.7",
-    "@types/react-dom": "16.0.10",
-    "parcel-bundler": "1.10.3",
-    "prettier": "1.15.2",
-    "typescript": "3.2.0-rc"
+    "@types/react": "16.8.2",
+    "@types/react-dom": "16.8.0",
+    "parcel-bundler": "1.11.0",
+    "prettier": "1.16.4",
+    "typescript": "3.3.3"
   },
   "dependencies": {
-    "@martin_hotell/rex-tils": "2.0.0",
-    "papercss": "1.6.0",
-    "react": "16.6.3",
-    "react-dom": "16.6.3",
+    "@martin_hotell/rex-tils": "2.1.1",
+    "papercss": "1.6.1",
+    "react": "16.8.1",
+    "react-dom": "16.8.1",
     "tslib": "1.9.3"
   }
 }
