@@ -97,4 +97,3 @@ export class Example extends Component {
 
 // Button color props
 type ColorVariants = 'primary' | 'secondary' | 'success' | 'warning' | 'danger'
-

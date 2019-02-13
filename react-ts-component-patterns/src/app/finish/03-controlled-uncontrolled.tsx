@@ -17,13 +17,12 @@ class Counter extends Component<Props, State> {
 
   getState() {
     return {
-      count: this.props.count!=null ? this.props.count : this.state.count
+      count: this.props.count != null ? this.props.count : this.state.count
     }
   }
 
   handleChange = (type: 'inc' | 'dec') => () => {
-
-    if (this.props.count!=null) {
+    if (this.props.count != null) {
       this.props.onChange(this.getState().count + typeMap[type])
     } else {
       this.setState(

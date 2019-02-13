@@ -35,7 +35,13 @@ export class Example extends Component {
 
 // ============================================================================
 // helpers
+const typeMap = { inc: 1, dec: -1 }
 
 // children: (
-//  props: State & { inc: Counter['handleInc']; dec: Counter['handleDec'] }
+//  props:
+//    & State
+//    & {
+//        inc: Counter['handleInc']
+//        dec: Counter['handleDec']
+//      }
 // ) => React.ReactChild

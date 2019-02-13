@@ -27,8 +27,6 @@ export class Counter extends Component<Props, State> {
   }
 
   handleChange = (type: 'inc' | 'dec') => () => {
-    const typeMap = { inc: 1, dec: -1 }
-
     if (this.props.count != null) {
       this.props.onChange(this.getState().count + typeMap[type])
     } else {
@@ -123,3 +121,7 @@ export class Example extends Component {
     )
   }
 }
+
+// ============================================================================
+// helpers
+const typeMap = { inc: 1, dec: -1 }

@@ -24,7 +24,7 @@ const withCounter = <P extends InjectedProps>(Cmp: React.ComponentType<P>) => {
               </p>
             ) : (
               // https://github.com/Microsoft/TypeScript/issues/28636
-              <Cmp  {...injectedProps} {...passThroughProps as P}  />
+              <Cmp {...injectedProps as P} {...passThroughProps} />
             )
           }
         </Counter>
@@ -35,23 +35,16 @@ const withCounter = <P extends InjectedProps>(Cmp: React.ComponentType<P>) => {
   return WithCounter
 }
 
-const CounterWannabe = (props:
-  InjectedProps & { colorType?: ColorTypes }
-) => {
-    const { count, inc, colorType } = props
+const CounterWannabe = (props: InjectedProps & { colorType?: ColorTypes }) => {
+  const { count, inc, colorType } = props
 
-    const classes = `alert alert-${colorType}`
+  const classes = `alert alert-${colorType}`
 
-    return (
-      <div
-        style={{ cursor: 'pointer' }}
-        className={classes}
-        onClick={inc}
-      >
-        {count}
-      </div>
-    )
-
+  return (
+    <div style={{ cursor: 'pointer' }} className={classes} onClick={inc}>
+      {count}
+    </div>
+  )
 }
 
 const ExtendedComponent = withCounter(CounterWannabe)
