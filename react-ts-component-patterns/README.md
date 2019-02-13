@@ -14,4 +14,4 @@ In this live coding session we will cover all React Component patterns technique
 
 - [📄 Slides](https://speakerdeck.com/martin_hotell/ultimate-react-component-patterns-with-typescript)
 - [🎥 Video](https://www.youtube.com/watch?v=_PBQ3if6Fmg&index=9&list=PLc3XlS7BqcAE0Hs37Omw4D-Z0xhBspnGB&t=0s)
-- [⌨️ Code](./src/live-finish) + `yarn start` from root
+- [⌨️ Code](./src/finish) + `yarn start` from root
