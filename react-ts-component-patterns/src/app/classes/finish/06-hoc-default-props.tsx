@@ -2,7 +2,7 @@ import React, { Component, ComponentType, ComponentProps } from 'react'
 import { ElementConfig, Diff } from '@martin_hotell/rex-tils'
 
 import { Counter } from './04-render-prop'
-import { Subtract, ExtractFuncArguments } from '../types'
+import { Subtract, ExtractFuncArguments } from '../../types'
 // ===========================================
 
 // ============================================================================
