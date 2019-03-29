@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { DemoWrapper } from '../demo-wrapper'
+import { DemoWrapper } from '../../demo-wrapper'
 
 import { Example as E1 } from './01'
 import { Example as E2 } from './02'

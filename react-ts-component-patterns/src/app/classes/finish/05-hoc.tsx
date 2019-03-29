@@ -1,6 +1,6 @@
 import React, { Component, ComponentProps } from 'react'
 import { Counter } from './04-render-prop'
-import { Subtract } from '../types'
+import { Subtract } from '../../types'
 // ============================================================================
 
 type InjectedProps = Parameters<ComponentProps<typeof Counter>['children']>[0]
