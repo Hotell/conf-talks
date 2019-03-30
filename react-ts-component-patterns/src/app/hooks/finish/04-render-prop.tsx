@@ -10,13 +10,9 @@ type Props = {
   children: (
     props: State & { inc: () => void; dec: () => void }
   ) => JSX.Element
-} & Partial<State> &
-  typeof defaultProps
+} & Partial<State & { onChange: (value: number) => void }>
 
 const initialState = { count: 0 }
-const defaultProps = {
-  onChange: (value: number) => {}
-}
 
 export const Counter = (props: Props) => {
   const [state, setState] = useState(initialState)
@@ -28,10 +24,10 @@ export const Counter = (props: Props) => {
   }
 
   const handleChange = (type: 'inc' | 'dec') => () => {
-    if (props.count != null) {
+    if (props.count != null && props.onChange) {
       props.onChange(getState().count + typeMap[type])
     } else {
-      setState((state) => ({ count: state.count + typeMap[type] }))
+      setState((state) => ({ count: getState().count + typeMap[type] }))
     }
   }
 
@@ -39,7 +35,10 @@ export const Counter = (props: Props) => {
   const handleDec = handleChange('dec')
 
   useEffect(() => {
-    props.onChange(getState().count)
+    if (props.onChange) {
+      props.onChange(getState().count)
+      console.log('effect run')
+    }
   }, [state.count])
 
   return props.children({
@@ -48,8 +47,6 @@ export const Counter = (props: Props) => {
     inc: handleInc
   })
 }
-
-Counter.defaultProps = defaultProps
 
 // ============================================================================
 
