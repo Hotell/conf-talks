@@ -43,3 +43,8 @@ const typeMap = { inc: 1, dec: -1 }
 //        dec: ()=>{}
 //      }
 // ) => JSX.Element
+
+
+const classes = {
+  counter: 'border row padding-small'
+}

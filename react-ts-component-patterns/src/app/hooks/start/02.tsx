@@ -27,3 +27,7 @@ Example.title = 'Stateful/Stateless'
 
 // Button color props
 type ColorVariants = 'primary' | 'secondary' | 'success' | 'warning' | 'danger'
+
+const classes = {
+  counter: 'border row padding-small'
+}

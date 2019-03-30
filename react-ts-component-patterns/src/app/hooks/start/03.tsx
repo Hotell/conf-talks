@@ -31,3 +31,7 @@ Example.title = 'Un/Controlled'
 // ============================================================================
 // helpers
 const typeMap = { inc: 1, dec: -1 }
+
+const classes = {
+  counter: 'border row padding-small'
+}

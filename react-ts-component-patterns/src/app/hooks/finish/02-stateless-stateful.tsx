@@ -5,15 +5,19 @@ import React, { useState } from 'react'
 
 type ButtonProps = {
   onClick: (ev: React.MouseEvent) => void
-  children: React.ReactChild
+  children: JSX.Element | React.ReactChild
   color?: ColorVariants
 }
 
-export const Button = ({ children, onClick, color }: ButtonProps) => (
-  <button className={color ? `btn-${color}` : ''} onClick={onClick}>
-    {children}
-  </button>
-)
+export const Button: React.FC<ButtonProps> = ({ children, onClick, color }) => {
+  const className = color && `btn-${color}`
+
+  return (
+    <button className={className} onClick={onClick}>
+      {children}
+    </button>
+  )
+}
 
 // ============================================================================
 // 2. Stateful with hooks
@@ -31,7 +35,7 @@ const Counter = (props: Props) => {
   }
 
   return (
-    <div className="border row">
+    <div className={classes.counter}>
       <Button color="success" onClick={handleInc}>
         👍
       </Button>
@@ -61,3 +65,7 @@ Example.title = 'Stateful/Stateless'
 
 // Button color props
 type ColorVariants = 'primary' | 'secondary' | 'success' | 'warning' | 'danger'
+
+const classes = {
+  counter: 'border row padding-small'
+}

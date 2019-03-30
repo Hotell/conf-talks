@@ -37,7 +37,7 @@ const Counter = (props: Props) => {
   }, [state.count])
 
   return (
-    <div className="border row">
+    <div className={classes.counter}>
       <Button onClick={handleInc}>👍</Button>
       <h3>{getState().count}</h3>
       <Button onClick={handleDec}>👎</Button>
@@ -81,3 +81,7 @@ Example.title = 'Un/Controlled'
 // ============================================================================
 // helpers
 const typeMap = { inc: 1, dec: -1 }
+
+const classes = {
+  counter: 'border row padding-small'
+}
