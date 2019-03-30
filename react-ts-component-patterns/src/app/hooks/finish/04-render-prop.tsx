@@ -1,9 +1,12 @@
-import React, { useState, useEffect, ReactNode } from 'react'
+import React, { useState, useEffect, ReactNode, ReactChild, FC } from 'react'
 import { Button } from './02-stateless-stateful'
 // ============================================================================
 
 type State = typeof initialState
 type Props = {
+  // Why children() cannot return ReactChild?
+  // TL;DR: Compiler constraint. You need to return JSx.Element or null
+  // @see https://github.com/DefinitelyTyped/DefinitelyTyped/issues/18912#issuecomment-446238418
   children: (
     props: State & { inc: () => void; dec: () => void }
   ) => JSX.Element
@@ -53,7 +56,7 @@ Counter.defaultProps = defaultProps
 const CounterWithButtons = () => (
   <Counter>
     {({ count, dec, inc }) => (
-      <div className="border row">
+      <div className={classes.counter}>
         <h5 className="alert alert-warning">{count}</h5>
         <Button onClick={inc}>👍</Button>
         <Button onClick={dec}>👎</Button>
@@ -77,7 +80,7 @@ export const Example = () => {
         <h5>Uncontrolled</h5>
         <Counter>
           {({ count, dec, inc }) => (
-            <div className="border row">
+            <div className={classes.counter}>
               <Button onClick={inc}>👍</Button>
               <Button onClick={dec}>👎</Button>
               <h5 className="alert alert-secondary">{count}</h5>
@@ -94,7 +97,7 @@ export const Example = () => {
         <Counter count={state.count} onChange={handleChange}>
           {({ count, dec, inc }) => (
             <div
-              className="border row"
+              className={classes.counter}
               style={{ flexDirection: 'column', alignItems: 'center' }}
             >
               <Button onClick={inc}>👍</Button>
@@ -113,3 +116,6 @@ Example.title = 'Render Props'
 // ============================================================================
 // helpers
 const typeMap = { inc: 1, dec: -1 }
+const classes = {
+  counter: 'border row padding-small'
+}
