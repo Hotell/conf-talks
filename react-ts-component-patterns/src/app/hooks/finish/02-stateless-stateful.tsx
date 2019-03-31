@@ -9,7 +9,7 @@ type ButtonProps = {
   color?: ColorVariants
 }
 
-export const Button: React.FC<ButtonProps> = ({ children, onClick, color }) => {
+export const Button = ({ children, onClick, color }: ButtonProps) => {
   const className = color && `btn-${color}`
 
   return (
@@ -21,17 +21,16 @@ export const Button: React.FC<ButtonProps> = ({ children, onClick, color }) => {
 
 // ============================================================================
 // 2. Stateful with hooks
+const initialState = { count: 0 }
 
-type Props = {}
-
-const Counter = (props: Props) => {
-  const [count, setCount] = useState(0)
+const Counter = () => {
+  const [state, setState] = useState(initialState)
 
   const handleInc = () => {
-    setCount(count + 1)
+    setState(prevState => ({count:prevState.count + 1}))
   }
   const handleDec = () => {
-    setCount(count - 1)
+    setState(prevState => ({count:prevState.count - 1}))
   }
 
   return (
@@ -39,7 +38,7 @@ const Counter = (props: Props) => {
       <Button color="success" onClick={handleInc}>
         👍
       </Button>
-      <h3>{count}</h3>
+      <h3>{state.count}</h3>
       <Button color="danger" onClick={handleDec}>
         👎
       </Button>
