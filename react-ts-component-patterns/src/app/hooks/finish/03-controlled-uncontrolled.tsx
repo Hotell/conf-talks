@@ -3,8 +3,10 @@ import React, { useState, useEffect } from 'react'
 import { Button } from './02-stateless-stateful'
 // ============================================================================
 
-type State = typeof initialState
-type Props = Partial<State & { onChange: (value: number) => void }>
+type Props = Partial<{
+  count: number
+  onChange: (value: number) => void
+}>
 
 const initialState = { count: 0 }
 

@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect } from 'react'
 
 import { Button } from './02-stateless-stateful'
-import { useStateWithCb } from './hooks';
+import { useSetState } from './hooks';
 // ============================================================================
 
 type State = typeof initialState
@@ -13,8 +13,7 @@ const defaultProps = {
 }
 
 const Counter = (props: Props) => {
-  // const [state,setState] = useState(initialState)
-  const [state,setState] = useStateWithCb(initialState,()=>{
+  const [state,setState] = useSetState(initialState,()=>{
     props.onChange(getState().count)
   },'count')
 
@@ -36,11 +35,6 @@ const Counter = (props: Props) => {
 
   const handleInc = handleChange('inc')
   const handleDec = handleChange('dec')
-
-  // useEffect(() => {
-  //   props.onChange(getState().count)
-  //   console.log('effect run')
-  // },[state.count])
 
 
     return (

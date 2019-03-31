@@ -2,15 +2,16 @@ import React, { useState, useEffect, ReactNode, ReactChild, FC } from 'react'
 import { Button } from './02-stateless-stateful'
 // ============================================================================
 
-type State = typeof initialState
 type Props = {
   // Why children() cannot return ReactChild?
   // TL;DR: Compiler constraint. You need to return JSx.Element or null
   // @see https://github.com/DefinitelyTyped/DefinitelyTyped/issues/18912#issuecomment-446238418
-  children: (
-    props: State & { inc: () => void; dec: () => void }
-  ) => JSX.Element
-} & Partial<State & { onChange: (value: number) => void }>
+  children: (props: {
+    count: number
+    inc: () => void
+    dec: () => void
+  }) => JSX.Element
+} & Partial<{ count: number; onChange: (value: number) => void }>
 
 const initialState = { count: 0 }
 
