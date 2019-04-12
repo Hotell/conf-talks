@@ -6,7 +6,7 @@ type Props = Partial<{
   onChange: (value: number) => void
 }>
 
-const initialState = { count: 0 }
+const initialState = 0
 
 const useCounter = (props: Props) => {
   const [state, setState] = useState(initialState)
@@ -16,22 +16,22 @@ const useCounter = (props: Props) => {
     }
 
     if (props.onChange) {
-      props.onChange(getState().count)
+      props.onChange(getState())
       console.log('effect run')
     }
-  }, [state.count])
+  }, [state])
 
   const getState = () => {
-    return {
-      count: props.count != null ? props.count : state.count
-    }
+    return props.count != null ? props.count : state
   }
 
   const createChangeHandler = (type: 'inc' | 'dec') => () => {
+    const newState = getState() + typeMap[type]
+
     if (props.count != null && props.onChange) {
-      props.onChange(getState().count + typeMap[type])
+      props.onChange(newState)
     } else {
-      setState((prevState) => ({ count: getState().count + typeMap[type] }))
+      setState(newState)
     }
   }
 
@@ -39,7 +39,7 @@ const useCounter = (props: Props) => {
   const handleDec = createChangeHandler('dec')
 
   return {
-    ...getState(),
+    count: getState(),
     inc: handleInc,
     dec: handleDec
   }
@@ -57,16 +57,28 @@ const Counter = (props: Props) => {
   )
 }
 
+// Render Prop pattern via hooks
+type CounterRenderProps = Props & {
+  children: (props: {
+    count: number
+    inc: () => void
+    dec: () => void
+  }) => JSX.Element
+}
+const CounterRender = ({ children, ...props }: CounterRenderProps) =>
+  children(useCounter(props))
+
+// =============================================================================
 export const Example = () => {
   const [state, setState] = useState(initialState)
 
   const handleChange = (newCount: number) => {
-    setState((state) => ({ count: newCount }))
+    setState(newCount)
   }
 
   return (
     <>
-      <h3>Root count: {state.count}</h3>
+      <h3>Root count: {state}</h3>
 
       <section>
         <h5>Uncontrolled</h5>
@@ -74,13 +86,46 @@ export const Example = () => {
       </section>
       <section>
         <h5>Controlled</h5>
-        <Counter count={state.count} onChange={handleChange} />
+        <Counter count={state} onChange={handleChange} />
       </section>
       <section>
         <h5>
           Uncontrolled emitter <small>updates parent state only</small>
         </h5>
         <Counter onChange={handleChange} />
+      </section>
+
+      <hr />
+
+      <section>
+        <h4>RenderProps via hooks</h4>
+        <div>
+          <h5>Uncontrolled</h5>
+          <CounterRender>
+            {({ count, dec, inc }) => (
+              <div className={classes.counter}>
+                <Button onClick={inc}>👍</Button>
+                <Button onClick={dec}>👎</Button>
+                <h5 className="alert alert-secondary">{count}</h5>
+              </div>
+            )}
+          </CounterRender>
+        </div>
+        <div>
+          <h5>Controlled</h5>
+          <CounterRender count={state} onChange={handleChange}>
+            {({ count, dec, inc }) => (
+              <div
+                className={classes.counter}
+                style={{ flexDirection: 'column', alignItems: 'center' }}
+              >
+                <Button onClick={inc}>👍</Button>
+                <h5>{count}</h5>
+                <Button onClick={dec}>👎</Button>
+              </div>
+            )}
+          </CounterRender>
+        </div>
       </section>
     </>
   )

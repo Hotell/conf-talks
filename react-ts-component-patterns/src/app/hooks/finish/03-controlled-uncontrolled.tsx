@@ -8,22 +8,22 @@ type Props = Partial<{
   onChange: (value: number) => void
 }>
 
-const initialState = { count: 0 }
+const initialState = 0
 
 const Counter = (props: Props) => {
   const [state, setState] = useState(initialState)
 
   const getState = () => {
-    return {
-      count: props.count != null ? props.count : state.count
-    }
+    return props.count != null ? props.count : state
   }
 
   const handleChange = (type: 'inc' | 'dec') => () => {
+    const newState = getState() + typeMap[type]
+
     if (props.count != null && props.onChange) {
-      props.onChange(getState().count + typeMap[type])
+      props.onChange(newState)
     } else {
-      setState((state) => ({ count: getState().count + typeMap[type] }))
+      setState(newState)
     }
   }
 
@@ -32,15 +32,15 @@ const Counter = (props: Props) => {
 
   useEffect(() => {
     if (props.onChange) {
-      props.onChange(getState().count)
+      props.onChange(getState())
       console.log('effect run')
     }
-  }, [state.count])
+  }, [state])
 
   return (
     <div className={classes.counter}>
       <Button onClick={handleInc}>👍</Button>
-      <h3>{getState().count}</h3>
+      <h3>{getState()}</h3>
       <Button onClick={handleDec}>👎</Button>
     </div>
   )
@@ -51,12 +51,12 @@ export const Example = () => {
   const [state, setState] = useState(initialState)
 
   const handleChange = (newCount: number) => {
-    setState((state) => ({ count: newCount }))
+    setState(newCount)
   }
 
   return (
     <>
-      <h3>Root count: {state.count}</h3>
+      <h3>Root count: {state}</h3>
 
       <section>
         <h5>Uncontrolled</h5>
@@ -64,7 +64,7 @@ export const Example = () => {
       </section>
       <section>
         <h5>Controlled</h5>
-        <Counter count={state.count} onChange={handleChange} />
+        <Counter count={state} onChange={handleChange} />
       </section>
       <section>
         <h5>

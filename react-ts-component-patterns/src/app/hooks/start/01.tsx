@@ -1,17 +1,21 @@
-import React, { Component } from 'react'
+/**
+ * DO THIS CHAPTER ONLY FOR 45 mins talk
+ */
+
+import React from 'react'
 // ============================================================================
 
 
-// 1. Functional Component + defaultProps
-
-// 2. Class Component + defaultProps
+// 1. Function and TypeScript
+// 2. createElement
+// 3. JSX
 
 
 // ============================================================================
-export class Example extends Component {
-  static title = 'React Intro'
-  render() {
-    // const view =
-    return <>{/* view */}</>
-  }
+
+export const Example = () => {
+  // const view =
+
+  return null
 }
+Example.title = 'React Intro'
