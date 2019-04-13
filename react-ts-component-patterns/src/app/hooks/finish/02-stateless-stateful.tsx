@@ -21,16 +21,16 @@ export const Button = ({ children, onClick, color }: ButtonProps) => {
 
 // ============================================================================
 // 2. Stateful with hooks
-const initialState = { count: 0 }
+const initialState = 0
 
 const Counter = () => {
   const [state, setState] = useState(initialState)
 
   const handleInc = () => {
-    setState(prevState => ({count:prevState.count + 1}))
+    setState(prevState => prevState+1)
   }
   const handleDec = () => {
-    setState(prevState => ({count:prevState.count - 1}))
+    setState(prevState => prevState - 1)
   }
 
   return (
@@ -38,7 +38,7 @@ const Counter = () => {
       <Button color="success" onClick={handleInc}>
         👍
       </Button>
-      <h3>{state.count}</h3>
+      <h3>{state}</h3>
       <Button color="danger" onClick={handleDec}>
         👎
       </Button>

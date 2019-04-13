@@ -3,7 +3,7 @@
 
 ## Intro
 
-So we got a component `CounterWannabe` that has following props. It basically watn's to support the same API as our `Counter`
+So we got a component `CounterWannabe` that has following props. It basically want's to support the same API as our `Counter`
 
 ```ts
 type CounterWannabeProps = {
@@ -29,7 +29,7 @@ type CounterWannabeProps = InjectedProps & {
 ```
 
 Why the name `InjectedProps` ?
-> We are going to inject this behaviour via our HoC
+> We are going to inject this behavior via our HoC
 
 
 ## HoC one (inject + pass)
@@ -114,7 +114,7 @@ const withCounter = <P extends InjectedProps>(Cmp: React.ComponentType<P>) => {
 
 ## HoC two (extend)
 
-We can extend our behaviour with new one
+We can extend our behavior with new one
 
 
 ```ts

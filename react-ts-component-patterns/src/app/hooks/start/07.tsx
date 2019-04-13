@@ -1,30 +1,45 @@
 // Hooks
-import React, { useState, useEffect } from 'react'
-// import { Button } from './02';
+import React, { useState } from 'react'
 
 type Props = Partial<{
   count: number
   onChange: (value: number) => void
 }>
 
-const initialState = { count: 0 }
+const initialState = 0
 
 // 1. hook
 
+
+// =============================================================================
+
 // 2. counter
 
+
+
+// =============================================================================
+
+// 3. Render props with hooks
+
+// type RenderProps = {
+//   children: (props: {
+//     count: number
+//     inc: () => void
+//     dec: () => void
+//   }) => JSX.Element
+// } & Props
 // =============================================================================
 
 export const Example = () => {
   const [state, setState] = useState(initialState)
 
   const handleChange = (newCount: number) => {
-    setState((state) => ({ count: newCount }))
+    setState(newCount)
   }
 
   return (
     <>
-      <h3>Root count: {state.count}</h3>
+      <h3>Root count: {state}</h3>
 
       <section>
         <h5>Uncontrolled</h5>
@@ -32,6 +47,10 @@ export const Example = () => {
       </section>
       <section>
         <h5>Controlled</h5>
+        @Todo
+      </section>
+      <section>
+        <h5>Render Prop + hook</h5>
         @Todo
       </section>
     </>

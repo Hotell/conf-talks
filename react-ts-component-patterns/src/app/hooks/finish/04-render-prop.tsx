@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ReactNode, ReactChild, FC } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button } from './02-stateless-stateful'
 // ============================================================================
 
@@ -13,22 +13,22 @@ type Props = {
   }) => JSX.Element
 } & Partial<{ count: number; onChange: (value: number) => void }>
 
-const initialState = { count: 0 }
+const initialState = 0
 
 export const Counter = (props: Props) => {
   const [state, setState] = useState(initialState)
 
   const getState = () => {
-    return {
-      count: props.count != null ? props.count : state.count
-    }
+    return props.count != null ? props.count : state
   }
 
   const handleChange = (type: 'inc' | 'dec') => () => {
+    const newState = getState() + typeMap[type]
+
     if (props.count != null && props.onChange) {
-      props.onChange(getState().count + typeMap[type])
+      props.onChange(newState)
     } else {
-      setState((state) => ({ count: getState().count + typeMap[type] }))
+      setState(newState)
     }
   }
 
@@ -37,13 +37,13 @@ export const Counter = (props: Props) => {
 
   useEffect(() => {
     if (props.onChange) {
-      props.onChange(getState().count)
+      props.onChange(getState())
       console.log('effect run')
     }
-  }, [state.count])
+  }, [state])
 
   return props.children({
-    ...getState(),
+    count: getState(),
     dec: handleDec,
     inc: handleInc
   })
@@ -67,12 +67,12 @@ export const Example = () => {
   const [state, setState] = useState(initialState)
 
   const handleChange = (newCount: number) => {
-    setState((state) => ({ count: newCount }))
+    setState(newCount)
   }
 
   return (
     <>
-      <h3>Root count: {state.count}</h3>
+      <h3>Root count: {state}</h3>
 
       <section>
         <h5>Uncontrolled</h5>
@@ -92,7 +92,7 @@ export const Example = () => {
 
       <section>
         <h5>Controlled</h5>
-        <Counter count={state.count} onChange={handleChange}>
+        <Counter count={state} onChange={handleChange}>
           {({ count, dec, inc }) => (
             <div
               className={classes.counter}

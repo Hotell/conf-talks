@@ -3,9 +3,9 @@ import React, { useState } from 'react'
 
 // 1. define children
 // 2. use children within render
-type State = typeof initialState
+type Props = {}
 
-const initialState = { count: 0 }
+const initialState = 0
 
 // ============================================================================
 
@@ -15,7 +15,7 @@ export const Example = () => {
   const [state, setState] = useState(initialState)
 
   const handleChange = (newCount: number) => {
-    setState((state) => ({ count: newCount }))
+    setState(newCount)
   }
 
   // 4. render uncontrolled counter via render props
@@ -23,7 +23,7 @@ export const Example = () => {
   // 6. render controlled counter via render props
   return (
     <>
-      <h3>Root count: {state.count}</h3>
+      <h3>Root count: {state}</h3>
       @TODO
     </>
   )
@@ -35,14 +35,11 @@ Example.title = 'Render Props'
 // helpers
 const typeMap = { inc: 1, dec: -1 }
 
-// children: (
-//  props:
-//    & State
-//    & {
-//        inc: ()=>{}
-//        dec: ()=>{}
-//      }
-// ) => JSX.Element
+// children: (props: {
+//              count: number
+//              inc: ()=>{}
+//              dec: ()=>{}
+//            }) => JSX.Element
 
 
 const classes = {

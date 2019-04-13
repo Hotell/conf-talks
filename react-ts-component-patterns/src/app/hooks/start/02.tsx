@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 // ============================================================================
 // 1. Button
 // Stateless
@@ -9,7 +9,6 @@ type ButtonProps = {}
 // 2. Counter
 // Stateful
 
-type Props = {}
 
 // ============================================================================
 export const Example = () => {
