@@ -5,8 +5,8 @@
   "author": "Martin Hochel <hochelmartin@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "bundle": "webpack --config src/build-tools-config/webpack.config.js --env development",
-    "bundle:check-js": "tsc -p src/build-tools-config"
+    "bundle": "webpack --config src/build-tools-config/finish/webpack.config.js --env development",
+    "bundle:check-js": "tsc -p src/build-tools-config/finish"
   },
   "devDependencies": {
     "@types/node": "8",
