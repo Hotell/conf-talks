@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "checkJs": true,
+    "allowJs": true,
+    "strict": true,
+    "noEmit": true
+  },
+  "include": [
+    "./app",
+    "webpack.config.js",
+    "./types.d.ts"
+  ]
+}
