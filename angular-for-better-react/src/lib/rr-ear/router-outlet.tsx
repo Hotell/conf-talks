@@ -14,6 +14,7 @@ import {
   RouteComponentProps,
   withRouter
 } from 'react-router-dom'
+import { PreloadingStrategy } from './preloading-strategy'
 
 export type RouteConfig = Pick<RouteProps, 'exact' | 'path'> & {
   component: NonNullable<RouteProps['component']>
@@ -22,6 +23,7 @@ export type RouteConfig = Pick<RouteProps, 'exact' | 'path'> & {
 
 export type RouterOutletProps = {
   routes?: RouteConfig[]
+  preloadingStrategy?: PreloadingStrategy
 } & RouteComponentProps
 
 const LazyRoute = ({
