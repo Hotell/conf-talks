@@ -1,0 +1,18 @@
+{
+  "name": "til-typescript",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Martin Hochel <hochelmartin@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "bundle": "webpack --config src/build-tools-config/finish/webpack.config.js --env development",
+    "bundle:check-js": "tsc -p src/build-tools-config/finish"
+  },
+  "devDependencies": {
+    "@types/node": "8",
+    "@types/webpack": "4.4.32",
+    "typescript": "3.4.5",
+    "webpack": "4.32.2",
+    "webpack-cli": "3.3.2"
+  }
+}
