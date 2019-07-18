@@ -15,3 +15,18 @@ In this live coding session we will cover all React Component patterns technique
 - [📄 Slides](https://speakerdeck.com/martin_hotell/ultimate-react-component-patterns-with-typescript)
 - [🎥 Video](https://www.youtube.com/watch?v=_PBQ3if6Fmg&index=9&list=PLc3XlS7BqcAE0Hs37Omw4D-Z0xhBspnGB&t=0s)
 - [⌨️ Code](./src/finish) + `yarn start` from root
+
+
+### [Codefest X 2019 / Novosibirsk,RU](https://2018.geecon.cz/schedule-day2/)
+
+- [📄 Slides](https://speakerdeck.com/martin_hotell/ultimate-react-component-patterns-with-typescript)
+- [🎥 Video](https://www.youtube.com/watch?v=_PBQ3if6Fmg&index=9&list=PLc3XlS7BqcAE0Hs37Omw4D-Z0xhBspnGB&t=0s)
+- [⌨️ Code](./src/finish) + `yarn start` from root
+
+### [Codecamp 2019 Cluj/Ro](https://2018.geecon.cz/schedule-day2/)
+
+- [📄 Slides](https://speakerdeck.com/martin_hotell/ultimate-react-component-patterns-with-typescript)
+- [🎥 Video](https://www.youtube.com/watch?v=_PBQ3if6Fmg&index=9&list=PLc3XlS7BqcAE0Hs37Omw4D-Z0xhBspnGB&t=0s)
+- [⌨️ Code](./src/finish) + `yarn start` from root
+
+### [Odessa JS 2019 / Odessa,UA](https://2018.geecon.cz/schedule-day2/)

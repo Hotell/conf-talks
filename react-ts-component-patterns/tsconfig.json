@@ -58,5 +58,8 @@
   },
   "include": [
     "src"
+  ],
+  "exclude": [
+    "src/app/classes"
   ]
 }
