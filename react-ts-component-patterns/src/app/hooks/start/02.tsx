@@ -1,8 +1,7 @@
-import React from 'react'
+import React, { ReactChild, useState } from 'react'
 // ============================================================================
-// 1. Button
+// 1. Button -> button.tsx
 // Stateless
-type ButtonProps = {}
 
 
 // ============================================================================
@@ -20,12 +19,8 @@ export const Example = () => {
 }
 Example.title = 'Stateful/Stateless'
 
-
 // ============================================================================
 // helpers
-
-// Button color props
-type ColorVariants = 'primary' | 'secondary' | 'success' | 'warning' | 'danger'
 
 const classes = {
   counter: 'border row padding-small'

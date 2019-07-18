@@ -2,17 +2,14 @@ import React, { useState } from 'react'
 
 // ============================================================================
 // 1. Counter Un/Controllable
-type Props = {}
-
-const initialState = 0
 
 
 // ============================================================================
 export const Example = () => {
-  const [state, setState] = useState(initialState)
+  const [rootState, setRootState] = useState(0)
 
   const handleChange = (newCount: number) => {
-    setState(newCount)
+    setRootState(newCount)
   }
 
   // 3. render uncontrolled counter
@@ -20,8 +17,7 @@ export const Example = () => {
   // 5. render uncontrolled counter with emitter
   return (
     <>
-      <h3>Root count: {state}</h3>
-      @TODO
+      <h3>Root count: {rootState}</h3>
     </>
   )
 }

@@ -1,11 +1,9 @@
-import React, { ComponentProps } from 'react'
-import { Counter } from './04'
-import { Subtract } from '../../types'
+import React, { ComponentProps, JSXElementConstructor } from 'react'
 
 // ============================================================================
 
 // 4. injected props + mapped type via conditional types explanation
-type InjectedProps = Parameters<ComponentProps<typeof Counter>['children']>[0]
+// type InjectedProps = Parameters<ComponentProps<typeof Counter>['children']>[0]
 
 // 5. extended { maxCount?: number }
 // type ExtendedProps = { maxCount?: number }
@@ -54,3 +52,6 @@ Example.title = 'HoC'
 // ============================================================================
 // Helpers
 type ColorTypes = 'primary' | 'secondary' | 'success'
+const classes = {
+  alertDanger: 'alert alert-danger'
+}

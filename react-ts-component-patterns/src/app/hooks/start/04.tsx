@@ -1,21 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, ReactElement, ReactChild } from 'react'
 // ============================================================================
 
 // 1. define children
 // 2. use children within render
-type Props = {}
-
-const initialState = 0
 
 // ============================================================================
 
 // 3. extract Counter to component with view
 
 export const Example = () => {
-  const [state, setState] = useState(initialState)
+  const [rootState, setRootState] = useState(0)
 
   const handleChange = (newCount: number) => {
-    setState(newCount)
+    setRootState(newCount)
   }
 
   // 4. render uncontrolled counter via render props
@@ -23,7 +20,7 @@ export const Example = () => {
   // 6. render controlled counter via render props
   return (
     <>
-      <h3>Root count: {state}</h3>
+      <h3>Root count: {rootState}</h3>
       @TODO
     </>
   )

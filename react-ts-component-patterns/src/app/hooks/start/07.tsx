@@ -1,12 +1,6 @@
 // Hooks
 import React, { useState } from 'react'
-
-type Props = Partial<{
-  count: number
-  onChange: (value: number) => void
-}>
-
-const initialState = 0
+// import { Button } from './button';
 
 // 1. hook
 
@@ -31,15 +25,15 @@ const initialState = 0
 // =============================================================================
 
 export const Example = () => {
-  const [state, setState] = useState(initialState)
+  const [rootState, setRootState] = useState(0)
 
   const handleChange = (newCount: number) => {
-    setState(newCount)
+    setRootState(newCount)
   }
 
   return (
     <>
-      <h3>Root count: {state}</h3>
+      <h3>Root count: {rootState}</h3>
 
       <section>
         <h5>Uncontrolled</h5>
