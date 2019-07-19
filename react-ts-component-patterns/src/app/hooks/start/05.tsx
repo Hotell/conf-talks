@@ -58,7 +58,7 @@ export const Example = () => {
   return (
     <>
       @TODO
-      <Stepper/>
+      {/* <Stepper/> */}
     </>
   )
 }
@@ -69,5 +69,5 @@ Example.title = 'HoC'
 type ColorVariants = 'primary' | 'secondary' | 'success' | 'warning' | 'danger'
 
 const classes = {
-  counter: 'border row padding-small',
+  counter: 'border padding-small',
 }
