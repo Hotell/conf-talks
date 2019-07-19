@@ -1,73 +1,87 @@
 import React, { ComponentProps, JSXElementConstructor } from 'react'
+import { useCounter } from './03'
 import { Counter } from './04'
+import { Button } from './button'
 
 // ============================================================================
 
 // 4. injected props + mapped type via conditional types explanation
-type InjectedProps = Parameters<ComponentProps<typeof Counter>['children']>[0]
+type InjectedProps = ReturnType<typeof useCounter>
 
-// 5. extended { maxCount?: number }
-type ExtendedProps = { maxCount?: number }
+// 5. extended
+type ExtendedProps = Partial<{ step: number }>
 
 // 3. withCounter
-const withCounter = <P extends InjectedProps>(Cmp: JSXElementConstructor<P>) => {
+const withCounter = <P extends InjectedProps>(
+  Cmp: JSXElementConstructor<P>
+) => {
+  // EXPLAIN TYPESCRIPT META-PROGRAMING
+  type InnerProps = Omit<P, keyof InjectedProps> & ExtendedProps
 
-  const WithCounter = (props: Omit<P, keyof InjectedProps> & ExtendedProps) => {
+  const WithCounter = (props: InnerProps) => {
+    const { step, ...passThroughProps } = props
 
-    const { maxCount, ...passThroughProps } = props
+    return (
+      <Counter>
+        {(injectedProps) => {
+          const extendedApi = step
+            ? {
+              ...injectedProps,
+              count: injectedProps.count * step,
+              }
+            : injectedProps
 
-    return <Counter>{(injectedProps)=>{
-      if(maxCount!=null && injectedProps.count > maxCount){
-        return <p className={classes.alertDanger}>YOU SHALL NOT PASS</p>
-      }
-
-      return (
-        <Cmp {...injectedProps as P} {...passThroughProps} />
-      )
-    }}</Counter>
+          return (
+            // https://github.com/Microsoft/TypeScript/issues/28636
+            <Cmp {...(extendedApi as P)} {...passThroughProps} />
+          )
+        }}
+      </Counter>
+    )
   }
 
   return WithCounter
 }
 
-
-// 1. CounterWannabe
+// 1. Counter
 //  a. introduce InjectedProps ☝️
 //  b. { colorType?: ColorTypes } -> passThrough in withCounter
-type CounterWannabeProps = {
+type CounterProps = {
   count: number
   inc: () => void
   dec: () => void
-  colorType?: ColorTypes
 }
 
-const CounterWannabe = (props: CounterWannabeProps) => {
-  const { count, inc, colorType } = props
-  const classes = `alert alert-${colorType}`
+const CounterStep = (props: CounterProps) => {
+  const { count, inc, dec } = props
 
   return (
-    <div style={{ cursor: 'pointer' }} className={classes} onClick={inc}>
-      {count}
+    <div className={classes.counter}>
+      <h3>{count}</h3>
+      <Button color="success" onClick={inc}>
+        👍
+      </Button>
+      <Button color="danger" onClick={dec}>
+        👎
+      </Button>
     </div>
   )
 }
 
 // 2. ExtendedComponent
-const ExtendedComponent = withCounter(CounterWannabe)
+const CounterStepper = withCounter(CounterStep)
 
 // ============================================================================
 export const Example = () => {
   return (
     <>
       {/*
-        3. types of ExtendedComponent
-        // - ExtendedComponent
-        // - ExtendedComponent with colorTypes
-        // - ExtendedComponent with maxCount
+        3. types of CounterStepper
         */}
-        <ExtendedComponent/>
-        <ExtendedComponent colorType="secondary"/>
-        <ExtendedComponent colorType="secondary" maxCount={3}/>
+      injected API
+      <CounterStepper />
+      injected + extended API
+      <CounterStepper step={10} />
     </>
   )
 }
@@ -75,7 +89,7 @@ Example.title = 'HoC'
 
 // ============================================================================
 // Helpers
-type ColorTypes = 'primary' | 'secondary' | 'success'
 const classes = {
+  counter: 'border row padding-small',
   alertDanger: 'alert alert-danger'
 }

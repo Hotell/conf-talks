@@ -1,9 +1,9 @@
 import React, { useState, ReactElement, ReactChild } from 'react'
 import { Button } from './button';
+import { useCounter } from './03';
 // ============================================================================
 
-// 1. define children
-// 2. use children within render
+// 1. define props extended by children
 type Props =  Partial<{
   count: number
   onChange: (count:number) => void
@@ -15,54 +15,37 @@ type Props =  Partial<{
   }) => ReactElement
 }
 
-const initialState = 0
-
-export const Counter = (props:Props) => {
-  const [state,setState] = useState(initialState)
-
-  const getState = () => props.count!=null ? props.count : state
-
-  const handleInc = () => {
-    if (props.onChange) {
-      props.onChange(getState() + 1)
-      return
-    }
-
-    setState((prev) => prev + 1)
-  }
-
-  const handleDec = () => {
-    if (props.onChange) {
-      props.onChange(getState() - 1)
-      return
-    }
-    setState((prev) => prev - 1)
-  }
-
-  return props.children({
-    count: getState(),
-    inc: handleInc,
-    dec: handleDec
-  })
+// 2. use hook with children as a function pattern
+export const Counter = ({children,...props}: Props) => {
+  return children(useCounter(props))
 }
 
 // ============================================================================
 
-// 3. extract Counter to component with view
-
 export const Example = () => {
-  const [rootState, setRootState] = useState(initialState)
+  const [rootState, setRootState] = useState(0)
 
   const handleChange = (newCount: number) => {
     setRootState(newCount)
   }
 
-  // 4. render uncontrolled counter via render props
-  // 5. render wrapped uncontrolled counter to CounterWithButtons
-  // 6. render controlled counter via render props
   return (
     <>
       <h3>Root count: {rootState}</h3>
+      {/* 3. use custom View */}
+      Uncontrolled
+      <Counter>
+        {(api) => {
+          return (
+            <div className={classes.counter}>
+              <Button color="success" onClick={api.inc}>👍</Button>
+              <Button color="danger" onClick={api.dec}>👎</Button>
+              <h3>{api.count}</h3>
+            </div>
+          )
+        }}
+      </Counter>
+      Controlled
       <Counter count={rootState} onChange={handleChange}>
         {(api) => {
           return (

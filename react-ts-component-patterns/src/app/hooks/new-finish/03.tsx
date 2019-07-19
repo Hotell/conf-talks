@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from 'react'
-import { Button } from './button';
+import { Button } from './button'
 
 // ============================================================================
-// 1. Counter Un/Controllable
-type Props =  Partial<{
+// 1. encapsulate logic to custom hook
+
+type Props = Partial<{
   count: number
-  onChange: (count:number) => void
+  onChange: (count: number) => void
 }>
 
 const initialState = 0
 
-const Counter = (props:Props) => {
-  const [state,setState] = useState(initialState)
+export const useCounter = (props: Props) => {
+  const [state, setState] = useState(initialState)
 
-  const getState = () => props.count!=null ? props.count : state
+  const getState = () => (props.count != null ? props.count : state)
 
   const handleInc = () => {
     if (props.onChange) {
@@ -32,40 +33,48 @@ const Counter = (props:Props) => {
     setState((prev) => prev - 1)
   }
 
+  return {
+    count: getState(),
+    inc: handleInc,
+    dec: handleDec
+  }
+}
+
+const Counter = (props: Props) => {
+  const { count, inc, dec } = useCounter(props)
+
   return (
     <div className={classes.counter}>
-        <Button onClick={handleInc}>👍</Button>
-        <h3>{getState()}</h3>
-        <Button onClick={handleDec}>👎</Button>
+      <Button onClick={inc}>👍</Button>
+      <h3>{count}</h3>
+      <Button onClick={dec}>👎</Button>
     </div>
   )
 }
 
-
 // ============================================================================
 export const Example = () => {
-  const [rootState, setRootState] = useState(initialState)
+  const [rootState, setRootState] = useState(0)
 
   const handleChange = (newCount: number) => {
     setRootState(newCount)
   }
 
-  // 3. render uncontrolled counter
-  // 4. render controlled counter
-  // 5. render uncontrolled counter with emitter
+  // 2. demonstrate it works as before
   return (
     <>
       <h3>Root count: {rootState}</h3>
+      Uncontrolled
       <Counter />
-      <Counter count={rootState} onChange={handleChange}/>
+      Controlled
+      <Counter count={rootState} onChange={handleChange} />
     </>
   )
 }
-Example.title = 'Un/Controlled'
+Example.title = 'Hooks'
 
 // ============================================================================
 // helpers
-const typeMap = { inc: 1, dec: -1 }
 
 const classes = {
   counter: 'border row padding-small'
