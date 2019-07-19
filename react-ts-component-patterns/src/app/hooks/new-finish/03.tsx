@@ -9,10 +9,9 @@ type Props = Partial<{
   onChange: (count: number) => void
 }>
 
-const initialState = 0
 
 export const useCounter = (props: Props) => {
-  const [state, setState] = useState(initialState)
+  const [state, setState] = useState(0)
 
   const getState = () => (props.count != null ? props.count : state)
 
@@ -56,10 +55,6 @@ const Counter = (props: Props) => {
 export const Example = () => {
   const [rootState, setRootState] = useState(0)
 
-  const handleChange = (newCount: number) => {
-    setRootState(newCount)
-  }
-
   // 2. demonstrate it works as before
   return (
     <>
@@ -67,7 +62,7 @@ export const Example = () => {
       Uncontrolled
       <Counter />
       Controlled
-      <Counter count={rootState} onChange={handleChange} />
+      <Counter count={rootState} onChange={setRootState} />
     </>
   )
 }

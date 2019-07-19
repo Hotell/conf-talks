@@ -8,10 +8,8 @@ type Props =  Partial<{
   onChange: (count:number) => void
 }>
 
-const initialState = 0
-
 const Counter = (props:Props) => {
-  const [state,setState] = useState(initialState)
+  const [state,setState] = useState(0)
 
   const getState = () => props.count!=null ? props.count : state
 
@@ -44,11 +42,7 @@ const Counter = (props:Props) => {
 
 // ============================================================================
 export const Example = () => {
-  const [rootState, setRootState] = useState(initialState)
-
-  const handleChange = (newCount: number) => {
-    setRootState(newCount)
-  }
+  const [rootState, setRootState] = useState(0)
 
   // 2. render uncontrolled counter
   // 3. render controlled counter
@@ -58,7 +52,7 @@ export const Example = () => {
       Uncontrolled
       <Counter />
       Controlled
-      <Counter count={rootState} onChange={handleChange} />
+      <Counter count={rootState} onChange={setRootState} />
     </>
   )
 }
@@ -66,7 +60,6 @@ Example.title = 'Un/Controlled'
 
 // ============================================================================
 // helpers
-const typeMap = { inc: 1, dec: -1 }
 
 const classes = {
   counter: 'border row padding-small'

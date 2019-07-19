@@ -20,10 +20,6 @@ export const Counter = ({children,...props}: Props) => {
 export const Example = () => {
   const [rootState, setRootState] = useState(0)
 
-  const handleChange = (newCount: number) => {
-    setRootState(newCount)
-  }
-
   return (
     <>
       <h3>Root count: {rootState}</h3>
@@ -41,7 +37,7 @@ export const Example = () => {
         }}
       </Counter>
       Controlled
-      <Counter count={rootState} onChange={handleChange}>
+      <Counter count={rootState} onChange={setRootState}>
         {(api) => {
           return (
             <div className={classes.counter}>

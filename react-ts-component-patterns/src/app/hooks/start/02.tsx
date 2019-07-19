@@ -8,11 +8,7 @@ import { Button } from './button'
 
 // ============================================================================
 export const Example = () => {
-  const [rootState, setRootState] = useState(initialState)
-
-  const handleChange = (newCount: number) => {
-    setRootState(newCount)
-  }
+  const [rootState, setRootState] = useState(0)
 
   // 2. render uncontrolled counter
   // 3. render controlled counter

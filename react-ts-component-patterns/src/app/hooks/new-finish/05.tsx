@@ -5,13 +5,13 @@ import { Button } from './button'
 
 // ============================================================================
 
-// 4. injected props + mapped type via conditional types explanation
+// 2. injected props via conditional types explanation
 type InjectedProps = ReturnType<typeof useCounter>
 
-// 5. extended
+// 3. extended
 type ExtendedProps = Partial<{ step: number }>
 
-// 3. withCounter
+// 4. withCounter
 const withCounter = <P extends InjectedProps>(
   Cmp: JSXElementConstructor<P>
 ) => {
@@ -26,8 +26,8 @@ const withCounter = <P extends InjectedProps>(
         {(injectedProps) => {
           const extendedApi = step
             ? {
-              ...injectedProps,
-              count: injectedProps.count * step,
+                ...injectedProps,
+                count: injectedProps.count * step
               }
             : injectedProps
 
@@ -43,33 +43,44 @@ const withCounter = <P extends InjectedProps>(
   return WithCounter
 }
 
-// 1. Counter
-//  a. introduce InjectedProps ☝️
-//  b. { colorType?: ColorTypes } -> passThrough in withCounter
-type CounterProps = {
+// 1. Stepper
+// a. {count: number; inc:() => void; dec:() => void} -> inject in withCounter
+// b. {color?: ColorTypes} -> passThrough in withCounter
+type StepperProps = {
   count: number
   inc: () => void
   dec: () => void
+  color?: ColorVariants
 }
 
-const CounterStep = (props: CounterProps) => {
-  const { count, inc, dec } = props
+const Stepper = ({ count, inc, dec, color }: StepperProps) => {
+  const min = 0
+  const max = 100
+  const calculate = Math.floor((max / 100) * count)
+  const percentage = count > max ? max : count < min ? min : calculate
+  const isOutOfUpperBounds = calculate >= max
+  const isOutOfLowerBounds = calculate <= min
 
   return (
-    <div className={classes.counter}>
-      <h3>{count}</h3>
-      <Button color="success" onClick={inc}>
-        👍
+    <div
+      className={classes.counter}
+      style={{ display: 'flex', alignItems: 'stretch' }}
+    >
+      <Button color="danger" onClick={() => !isOutOfLowerBounds && dec()}>
+        👈
       </Button>
-      <Button color="danger" onClick={dec}>
-        👎
+      <div className="progress" style={{ height: 'auto' }}>
+        <div className={`bar striped ${color} w-${percentage}`} />
+      </div>
+      <Button color="success" onClick={() => !isOutOfUpperBounds && inc()}>
+        👉
       </Button>
     </div>
   )
 }
 
-// 2. ExtendedComponent
-const CounterStepper = withCounter(CounterStep)
+// 5. Stepper with functionality
+const CounterStepper = withCounter(Stepper)
 
 // ============================================================================
 export const Example = () => {
@@ -81,7 +92,7 @@ export const Example = () => {
       injected API
       <CounterStepper />
       injected + extended API
-      <CounterStepper step={10} />
+      <CounterStepper step={10} color="warning" />
     </>
   )
 }
@@ -90,6 +101,7 @@ Example.title = 'HoC'
 // ============================================================================
 // Helpers
 const classes = {
-  counter: 'border row padding-small',
-  alertDanger: 'alert alert-danger'
+  counter: 'border padding-small'
 }
+
+type ColorVariants = 'primary' | 'secondary' | 'success' | 'warning' | 'danger'
