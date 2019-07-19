@@ -1,27 +1,32 @@
-import React, { ReactChild, useState } from 'react'
-// ============================================================================
-// 1. Button -> button.tsx
-// Stateless
-
+import React, { useState, useEffect } from 'react'
+import { Button } from './button'
 
 // ============================================================================
-// 2. Counter
-// Stateful
+// 1. Counter Un/Controlled
+
 
 
 // ============================================================================
 export const Example = () => {
+  const [rootState, setRootState] = useState(initialState)
+
+  const handleChange = (newCount: number) => {
+    setRootState(newCount)
+  }
+
+  // 2. render uncontrolled counter
+  // 3. render controlled counter
   return (
     <>
-      @TODO
+      <h3>Root count: {rootState}</h3>
+
     </>
   )
 }
-Example.title = 'Stateful/Stateless'
+Example.title = 'Un/Controlled'
 
 // ============================================================================
 // helpers
-
 const classes = {
   counter: 'border row padding-small'
 }

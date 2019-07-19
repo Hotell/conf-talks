@@ -50,9 +50,8 @@ export const Example = () => {
     setRootState(newCount)
   }
 
-  // 3. render uncontrolled counter
-  // 4. render controlled counter
-  // 5. render uncontrolled counter with emitter
+  // 2. render uncontrolled counter
+  // 3. render controlled counter
   return (
     <>
       <h3>Root count: {rootState}</h3>

@@ -60,6 +60,11 @@
     "src"
   ],
   "exclude": [
-    "src/app/classes"
+    "src/app/classes",
+    "src/app/hooks/finish",
+
+    // swipe following when starting coding session
+    // "src/app/hooks/new-finish",
+    "src/app/hooks/start"
   ]
 }

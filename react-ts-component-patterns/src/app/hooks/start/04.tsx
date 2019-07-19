@@ -1,12 +1,15 @@
 import React, { useState, ReactElement, ReactChild } from 'react'
+import { Button } from './button';
+import { useCounter } from './03';
 // ============================================================================
 
-// 1. define children
-// 2. use children within render
+// 1. define props extended by `children`
+
+// 2. introduce TS meta-programming by getting all needed types from useCounter
+
+// 3. use hook with children as a function pattern
 
 // ============================================================================
-
-// 3. extract Counter to component with view
 
 export const Example = () => {
   const [rootState, setRootState] = useState(0)
@@ -15,13 +18,11 @@ export const Example = () => {
     setRootState(newCount)
   }
 
-  // 4. render uncontrolled counter via render props
-  // 5. render wrapped uncontrolled counter to CounterWithButtons
-  // 6. render controlled counter via render props
   return (
     <>
       <h3>Root count: {rootState}</h3>
-      @TODO
+      {/* 3. use custom View */}
+
     </>
   )
 }
@@ -30,14 +31,12 @@ Example.title = 'Render Props'
 
 // ============================================================================
 // helpers
-const typeMap = { inc: 1, dec: -1 }
 
 // children: (props: {
 //              count: number
 //              inc: ()=>{}
 //              dec: ()=>{}
 //            }) => JSX.Element
-
 
 const classes = {
   counter: 'border row padding-small'

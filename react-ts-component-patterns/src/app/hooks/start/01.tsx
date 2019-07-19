@@ -1,21 +1,26 @@
-/**
- * DO THIS CHAPTER ONLY FOR 45 mins talk
- */
-
-import React from 'react'
+import React, { ReactChild, useState } from 'react'
 // ============================================================================
+// 1. Button -> button.tsx
+// Stateless
 
+// ============================================================================
+// 2. Counter
+// Stateful
 
-// 1. Function and TypeScript
-// 2. createElement
-// 3. JSX
 
 
 // ============================================================================
-
 export const Example = () => {
-  // const view =
-
-  return null
+  return (
+    <>
+      @TODO
+    </>
+  )
 }
-Example.title = 'React Intro'
+Example.title = 'Stateful/Stateless'
+
+// ============================================================================
+// helpers
+const classes = {
+  counter: 'border row padding-small'
+}

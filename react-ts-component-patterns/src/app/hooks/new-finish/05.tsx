@@ -1,4 +1,4 @@
-import React, { ComponentProps, JSXElementConstructor } from 'react'
+import React, { JSXElementConstructor } from 'react'
 import { useCounter } from './03'
 import { Counter } from './04'
 import { Button } from './button'

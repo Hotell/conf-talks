@@ -4,16 +4,11 @@ import { useCounter } from './03';
 // ============================================================================
 
 // 1. define props extended by children
-type Props =  Partial<{
-  count: number
-  onChange: (count:number) => void
-}> & {
-  children: (props:{
-    count: number
-    inc:() => void
-    dec:() => void
-  }) => ReactElement
+type Props =  CounterProps & {
+  children: (props:ChildrenApi) => ReactElement
 }
+type ChildrenApi = ReturnType<typeof useCounter>
+type CounterProps = Parameters<typeof useCounter>[0]
 
 // 2. use hook with children as a function pattern
 export const Counter = ({children,...props}: Props) => {
@@ -65,7 +60,6 @@ Example.title = 'Render Props'
 
 // ============================================================================
 // helpers
-const typeMap = { inc: 1, dec: -1 }
 
 // children: (props: {
 //              count: number

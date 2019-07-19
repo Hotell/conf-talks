@@ -1,6 +1,4 @@
 import React, { ReactChild } from 'react'
-// 1. Button
-// Stateless
 
-
-type ColorVariants = 'primary' | 'secondary' | 'success' | 'warning' | 'danger'
+// 1. Stateless Component - Button
+// 2. Demonstrate jsx === function calls
