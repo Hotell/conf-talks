@@ -5,18 +5,47 @@ import { Button } from './button'
 
 // ============================================================================
 
-// 2. injected props + mapped type via conditional types explanation
-// type InjectedProps = ReturnType<typeof useCounter>
+// 2. injected props via conditional types explanation
+type InjectedProps = ReturnType<typeof useCounter>
 
 // 3. extended
-// type ExtendedProps = Partial<{ step: number }>
+type ExtendedProps = Partial<{ step: number }>
 
 // 4. withCounter
+const withCounter = <P extends InjectedProps>(
+  Cmp: JSXElementConstructor<P>
+) => {
+  // EXPLAIN TYPESCRIPT META-PROGRAMING
+  type InnerProps = Omit<P, keyof InjectedProps> & ExtendedProps
 
+  const WithCounter = (props: InnerProps) => {
+    const { step, ...passThroughProps } = props
 
-/// 1. Introduce Stepper
-//  a. {count: number; inc:() => void; dec:() => void} -> inject in withCounter
-//  b. {color?: ColorTypes} -> passThrough in withCounter
+    return (
+      <Counter>
+        {(injectedProps) => {
+          const extendedApi = step
+            ? {
+                ...injectedProps,
+                count: injectedProps.count * step
+              }
+            : injectedProps
+
+          return (
+            // https://github.com/Microsoft/TypeScript/issues/28636
+            <Cmp {...(extendedApi as P)} {...passThroughProps} />
+          )
+        }}
+      </Counter>
+    )
+  }
+
+  return WithCounter
+}
+
+// 1. Stepper
+// a. {count: number; inc:() => void; dec:() => void} -> inject in withCounter
+// b. {color?: ColorTypes} -> passThrough in withCounter
 type StepperProps = {
   count: number
   inc: () => void
@@ -51,14 +80,19 @@ const Stepper = ({ count, inc, dec, color }: StepperProps) => {
 }
 
 // 5. Stepper with functionality
-// const CounterStepper = withCounter(Stepper)
+const CounterStepper = withCounter(Stepper)
 
 // ============================================================================
 export const Example = () => {
   return (
     <>
-      @TODO
-      {/* <Stepper/> */}
+      {/*
+        3. types of CounterStepper
+        */}
+      injected API
+      <CounterStepper />
+      injected + extended API
+      <CounterStepper step={10} color="warning" />
     </>
   )
 }
@@ -66,8 +100,8 @@ Example.title = 'HoC'
 
 // ============================================================================
 // Helpers
-type ColorVariants = 'primary' | 'secondary' | 'success' | 'warning' | 'danger'
-
 const classes = {
-  counter: 'border padding-small',
+  counter: 'border padding-small'
 }
+
+type ColorVariants = 'primary' | 'secondary' | 'success' | 'warning' | 'danger'

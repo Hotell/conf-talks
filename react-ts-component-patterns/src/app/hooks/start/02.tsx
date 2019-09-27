@@ -1,32 +1,28 @@
-import React from 'react'
-// ============================================================================
-// 1. Button
-// Stateless
-type ButtonProps = {}
-
+import React, { useState, useEffect } from 'react'
+import { Button } from './button'
 
 // ============================================================================
-// 2. Counter
-// Stateful
+// 1. Counter Un/Controlled
+
 
 
 // ============================================================================
 export const Example = () => {
+  const [rootState, setRootState] = useState(0)
+
+  // 2. render uncontrolled counter
+  // 3. render controlled counter
   return (
     <>
-      @TODO
+      <h3>Root count: {rootState}</h3>
+
     </>
   )
 }
-Example.title = 'Stateful/Stateless'
-
+Example.title = 'Un/Controlled'
 
 // ============================================================================
 // helpers
-
-// Button color props
-type ColorVariants = 'primary' | 'secondary' | 'success' | 'warning' | 'danger'
-
 const classes = {
   counter: 'border row padding-small'
 }

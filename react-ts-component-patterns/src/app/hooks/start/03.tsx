@@ -1,36 +1,35 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { Button } from './button'
 
 // ============================================================================
-// 1. Counter Un/Controllable
-type Props = {}
+// 1. write custom hook shell without logic
 
-const initialState = 0
+
+// 2. copy Counter
+
+
+// 3. extract Counter logic to hook
+
+
+// 4. create Counter which uses our hook
 
 
 // ============================================================================
 export const Example = () => {
-  const [state, setState] = useState(initialState)
+  const [rootState, setRootState] = useState(0)
 
-  const handleChange = (newCount: number) => {
-    setState(newCount)
-  }
-
-  // 3. render uncontrolled counter
-  // 4. render controlled counter
-  // 5. render uncontrolled counter with emitter
+  // 2. demonstrate it works as before
   return (
     <>
-      <h3>Root count: {state}</h3>
-      @TODO
+      <h3>Root count: {rootState}</h3>
+
     </>
   )
 }
-Example.title = 'Un/Controlled'
+Example.title = 'Hooks'
 
 // ============================================================================
 // helpers
-const typeMap = { inc: 1, dec: -1 }
-
 const classes = {
   counter: 'border row padding-small'
 }
