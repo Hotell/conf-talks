@@ -109,12 +109,11 @@ this.viewRef = /** @type {ViewRef} */ ({
 })
 ```
 
-### 4. register listeners and initial count to DOM
+### 4. register listeners
 
 ```js
 class Counter extends HTMLElement {
   constructor() {
-    this.viewRef.countView.textContent = '0'
     this.viewRef.incBtn.addEventListener('click', () => {
       console.log('inc')
     })
@@ -125,7 +124,19 @@ class Counter extends HTMLElement {
 }
 ```
 
-### 5. register state -> count prop
+### 5. create render()
+
+```js
+render() {
+  this.viewRef.countView.textContent = '0'
+}
+
+connectedCallback(){
+  this.render()
+}
+```
+
+### 6. register state -> count prop
 
 ```js
 _count = 0
@@ -135,19 +146,19 @@ get count() {
 }
 set count(val) {
   this._count = val
-  this.viewRef.countView.textContent = String(this.count)
+  this.render()
 }
 ```
 
-### 5. create render()
+**🚨NOTE!!! - UPDATE RENDER 🚨**
 
 ```js
 render() {
-  this.viewRef.countView.textContent = String(this.count)
+  this.viewRef.countView.textContent = this.count
 }
 ```
 
-### 6. declarative html -> count attribute
+### 7. declarative html -> count attribute
 
 ```js
 static get observedAttributes() {
@@ -166,7 +177,7 @@ attributeChangedCallback(name, oldVal, newVal) {
 }
 ```
 
-### 7. add Shadow DOM
+### 8. add Shadow DOM
 
 ```js
 this.root = this.attachShadow({ mode: 'open' })
@@ -180,7 +191,7 @@ this.viewRef = /** @type {ViewRef} */ ({
 })
 ```
 
-### 8. add scoped CSS + theming
+### 9. add scoped CSS + theming support
 
 ```html
 <style>
@@ -212,7 +223,7 @@ this.viewRef = /** @type {ViewRef} */ ({
 </style>
 ```
 
-### 9. theme our component
+### 10. theme our component
 
 ```css
 :root {
@@ -221,7 +232,7 @@ this.viewRef = /** @type {ViewRef} */ ({
 }
 ```
 
-### 10. add composition via projection
+### 11. add composition via projection
 
 ```html
 <wc-counter count="100">
@@ -240,4 +251,4 @@ this.viewRef = /** @type {ViewRef} */ ({
 }
 ```
 
-### 11. showcase interop with React
+### 12. showcase interop with React
