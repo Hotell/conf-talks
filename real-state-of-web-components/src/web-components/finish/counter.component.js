@@ -4,7 +4,6 @@ const template = document.createElement('template')
 template.innerHTML = `
   <style>
     :host {
-
       contain: content;
       all: initial;
       display: flex;
@@ -13,7 +12,8 @@ template.innerHTML = `
       justify-content: space-around;
       max-width: 80%;
     }
-    :host > * {
+
+    :host * {
       font-size: 1.5rem;
     }
 

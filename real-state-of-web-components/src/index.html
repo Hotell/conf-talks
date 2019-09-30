@@ -10,8 +10,9 @@
     html,
     body {
       font-size: 14px;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: sans-serif;
     }
+
     button {
       background-color: rebeccapurple;
       color: azure;
@@ -20,20 +21,22 @@
       border-radius: 0.5em;
       box-shadow: 1px 0px 10px #66339991;
     }
-    :root {
+    /* :root {
       --wc-counter-button-bg-color: #333;
       --wc-counter-button-border-radius: 50%;
-    }
+    } */
   </style>
   <body>
     <h1>Web Components DEMO</h1>
     <br />
+    <main>
+      <wc-counter count="100">
+        <b class="title">counter:</b>
+      </wc-counter>
 
-    <wc-counter count="100">
-      <b class="title">counter:</b>
-    </wc-counter>
+      <div id="root"></div>
+    </main>
 
-    <div id="root"></div>
     <script src="./main.js"></script>
   </body>
 </html>
