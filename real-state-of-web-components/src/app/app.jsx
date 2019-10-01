@@ -5,24 +5,18 @@ import './app.css'
 export const App = () => {
   const [state, setState] = useState(0)
 
-  /**
-   * @param {React.ChangeEvent<HTMLInputElement>} ev
-   */
-  const handleChange = (ev) => {
-    setState(Number(ev.target.value))
+  const handleClick = () => {
+    setState((prev) => prev + 1)
   }
 
   return (
     <section>
       <h1>Hello from React</h1>
-      <label>React State:</label>
-      <input
-        className="app_input"
-        type="number"
-        value={state}
-        onChange={handleChange}
-      />
-      <section>
+      <div>
+        <button onClick={handleClick}>Inc React State</button>
+        <div>{state}</div>
+      </div>
+      <section className="app_interop">
         <h2>WC interop</h2>
         <wc-counter count={state}></wc-counter>
       </section>
