@@ -1,6 +1,10 @@
 /** @typedef {{incBtn: HTMLButtonElement, decBtn: HTMLButtonElement, countView: HTMLElement}} ViewRef */
 
 class Counter extends HTMLElement {
+  static get observedAttributes() {
+    return []
+  }
+
   constructor() {
     super()
 
@@ -25,6 +29,18 @@ class Counter extends HTMLElement {
 
   connectedCallback() {
     console.log('Mounted')
+  }
+
+  /**
+   *
+   * @param {'count'} attrName
+   * @param {string} oldVal
+   * @param {string} newVal
+   */
+  attributeChangedCallback(attrName, oldVal, newVal) {
+    // if (attrName === 'count') {
+    //   this.count = Number(newVal)
+    // }
   }
 
   disconnectedCallback() {
