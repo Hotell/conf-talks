@@ -22,12 +22,11 @@ class Counter extends HTMLElement {
     // this.viewRef.decBtn.addEventListener('click', () => {
     //   console.log('dec')
     // })
-
-    // RENDER!
-    // this.viewRef.countView.textContent = '0'
   }
 
   connectedCallback() {
+    // RENDER!
+    // this.viewRef.countView.textContent = '0'
     console.log('Mounted')
   }
 
