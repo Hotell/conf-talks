@@ -147,12 +147,12 @@ render() {
   this.viewRef.countView.textContent = '0'
 }
 
-connectedCallback(){
+connectedCallback() {
   this.render()
 }
 ```
 
-### 6. register state -> count prop
+### 6. register state -> count prop api
 
 ```js
 _count = 0
@@ -177,6 +177,8 @@ render() {
 ```
 
 ### 7. declarative html -> count attribute
+
+> ⚠️ skip this for 30 mins talk
 
 ```js
 static get observedAttributes() {
@@ -258,11 +260,11 @@ Let's give our element some style!
 
 ### 11. add composition via projection
 
-- for 30 min talk -> PROBABLY SKIP THIS
+- ⚠️for 30 min talk -> PROBABLY SKIP THIS
 
 ```html
 <wc-counter count="100">
-  <b class="title">hello</b>
+  <h2 class="title">hello</h2>
 </wc-counter>
 ```
 
@@ -279,4 +281,4 @@ Let's give our element some style!
 
 ### 12. showcase interop with React
 
-- for 30 min talk -> SKIP THIS
+- ⚠️for 30 min talk -> SKIP THIS
