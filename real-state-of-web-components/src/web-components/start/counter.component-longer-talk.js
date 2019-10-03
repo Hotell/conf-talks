@@ -7,7 +7,7 @@
 <button class="dec">👎</button>
 */
 
-// STYLES -> ⚡️THEMING !!!️️️⚡️
+// STYLES
 /*
 :host {
   all: initial;
@@ -43,7 +43,11 @@ button {
 }
 */
 
-class Counter extends HTMLElement {
+export class Counter extends HTMLElement {
+  static get observedAttributes() {
+    return []
+  }
+
   constructor() {
     super()
 
@@ -68,5 +72,23 @@ class Counter extends HTMLElement {
 
     // 👉move to RENDER method!
     // this._viewRef.countView.textContent = '0'
+  }
+
+  /**
+   *
+   * @param {'count'} attrName
+   * @param {string} oldVal
+   * @param {string} newVal
+   */
+  attributeChangedCallback(attrName, oldVal, newVal) {
+    console.log(`Attribute "${attrName}" changed to: ${newVal}`)
+
+    // if (attrName === 'count') {
+    //   this.count = Number(newVal)
+    // }
+  }
+
+  disconnectedCallback() {
+    console.log('Unmounted')
   }
 }
