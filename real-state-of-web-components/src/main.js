@@ -1,6 +1,6 @@
 // import './web-components/start/counter.component'
 
-//🚨 remove following before start:
+// 🚨 REMOVE following code before start!
 
 import { registerElement } from './web-components/finish/counter.component'
 import { bootstrapReactApp } from './app/bootstrap'

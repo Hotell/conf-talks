@@ -19,13 +19,15 @@ template.innerHTML = `
 
     button {
       background-color: var(--wc-counter-button-bg-color, #eee);
-      padding: 1.5rem;
       border-radius: var(--wc-counter-button-border-radius, 0.25em);
       box-shadow: 0px 0px 5px 1px rgba(0,0,0,.5);
+      padding: 1.5rem;
     }
 
     ::slotted(.title) {
       text-align: center;
+      text-transform: uppercase;
+      font-size: 1rem;
       width: 100%;
     }
   </style>
@@ -51,7 +53,7 @@ export class Counter extends HTMLElement {
 
   set count(val) {
     this._count = val
-    this._render()
+    this.render()
   }
 
   handleDec = () => {
@@ -68,9 +70,10 @@ export class Counter extends HTMLElement {
    * @param {unknown} newVal
    */
   attributeChangedCallback(attrName, oldVal, newVal) {
+    console.log(`Attribute "${attrName}" changed to: ${newVal}`)
+
     if (attrName === 'count' && oldVal !== newVal) {
       this.count = Number(newVal)
-      // this._render()
     }
   }
 
@@ -79,42 +82,29 @@ export class Counter extends HTMLElement {
 
     this._root = this.attachShadow({ mode: 'open' })
 
-    // this.appendChild(template.content.cloneNode(true))
     this._root.appendChild(template.content.cloneNode(true))
 
-    // /**
-    //  * @type {number}
-    //  */
-    // this.count = 0
-
-    // this.viewRef = /** @type {ViewRef}*/ ({
-    //   incBtn: this.querySelector('.inc'),
-    //   decBtn: this.querySelector('.dec'),
-    //   countView: this.querySelector('.count'),
-    // })
-    this.viewRef = /** @type {ViewRef}*/ ({
+    this._viewRef = /** @type {ViewRef}*/ ({
       incBtn: this._root.querySelector('.inc'),
       decBtn: this._root.querySelector('.dec'),
       countView: this._root.querySelector('.count'),
     })
 
-    // this.viewRef.countView.textContent = String(this.count)
-
-    this.viewRef.incBtn.addEventListener('click', this.handleInc)
-    this.viewRef.decBtn.addEventListener('click', this.handleDec)
+    this._viewRef.incBtn.addEventListener('click', this.handleInc)
+    this._viewRef.decBtn.addEventListener('click', this.handleDec)
   }
 
   connectedCallback() {
-    this._render()
+    this.render()
   }
 
   disconnectedCallback() {
-    this.viewRef.incBtn.removeEventListener('click', this.handleInc)
-    this.viewRef.decBtn.removeEventListener('click', this.handleDec)
+    this._viewRef.incBtn.removeEventListener('click', this.handleInc)
+    this._viewRef.decBtn.removeEventListener('click', this.handleDec)
   }
 
-  _render() {
-    this.viewRef.countView.textContent = String(this.count)
+  render() {
+    this._viewRef.countView.textContent = String(this.count)
   }
 }
 

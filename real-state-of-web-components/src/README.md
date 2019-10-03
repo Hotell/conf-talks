@@ -1,5 +1,7 @@
 # Live Coding
 
+- ⏰ time requirements: 10 - 12 minutes max !!!
+
 ## initial setup
 
 **index.html**
@@ -49,13 +51,18 @@
 
 button {
   background-color: var(--wc-counter-button-bg-color, #eee);
-  padding: 1.5rem;
   border-radius: var(--wc-counter-button-border-radius, 0.25em);
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.5);
+  padding: 1.5rem;
 }
 
+/* ========== */
+/* PROJECTION */
+/* ========== */
 ::slotted(.title) {
   text-align: center;
+  text-transform: uppercase;
+  font-size: 1rem;
   width: 100%;
 }
 ```
@@ -63,24 +70,15 @@ button {
 **main.js**
 
 ```js
-// import { registerElement } from './web-components/finish/counter.component'
 import './web-components/start/counter.component'
-
-import { bootstrapReactApp } from './app/bootstrap'
-
-const bootstrap = () => {
-  // 🚨comment out before start:
-  // ===========================
-  // registerElement()
-  // bootstrapReactApp()
-}
-
-bootstrap()
 ```
 
 ## Build Custom Element
 
 ### 1. step
+
+- Briefly describe custom element API
+- Showcase in dev-tools that
 
 ```js
 class Counter extends HTMLElement {
@@ -117,7 +115,7 @@ class Counter extends HTMLElement {
 }
 ```
 
-### 3. get dom refs
+### 3. get template DOM refs
 
 ```js
 this.viewRef = /** @type {ViewRef} */ ({
@@ -170,6 +168,8 @@ set count(val) {
 
 **🚨NOTE!!! - UPDATE RENDER 🚨**
 
+- explain why `this.count` instead of `this._count`
+
 ```js
 render() {
   this.viewRef.countView.textContent = this.count
@@ -197,6 +197,10 @@ attributeChangedCallback(name, oldVal, newVal) {
 
 ### 8. add Shadow DOM
 
+- what about the styling of our buttons ?
+- they are have purple background color, who's doing that?
+- to make our web component truly encapsulated we need to use shadow DOM
+
 ```js
 this.root = this.attachShadow({ mode: 'open' })
 
@@ -210,6 +214,8 @@ this.viewRef = /** @type {ViewRef} */ ({
 ```
 
 ### 9. add scoped CSS + theming support
+
+Let's give our element some style!
 
 ```html
 <style>
@@ -234,9 +240,9 @@ this.viewRef = /** @type {ViewRef} */ ({
 
   button {
     background-color: var(--wc-counter-button-bg-color, #eee);
-    padding: 1.5rem;
     border-radius: var(--wc-counter-button-border-radius, 0.25em);
     box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.5);
+    padding: 1.5rem;
   }
 </style>
 ```
@@ -251,6 +257,8 @@ this.viewRef = /** @type {ViewRef} */ ({
 ```
 
 ### 11. add composition via projection
+
+- for 30 min talk -> PROBABLY SKIP THIS
 
 ```html
 <wc-counter count="100">
@@ -270,3 +278,5 @@ this.viewRef = /** @type {ViewRef} */ ({
 ```
 
 ### 12. showcase interop with React
+
+- for 30 min talk -> SKIP THIS
