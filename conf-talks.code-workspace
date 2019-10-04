@@ -8,10 +8,12 @@
     },
     {
       "path": "angular-for-better-react"
+    },
+    {
+      "path": "real-state-of-web-components"
     }
   ],
   "settings": {
-    "typescript.tsdk": "react-ts-component-patterns/node_modules/typescript/lib",
-    "editor.snippetSuggestions": "none"
+    "editor.snippetSuggestions": "inline"
   }
 }
