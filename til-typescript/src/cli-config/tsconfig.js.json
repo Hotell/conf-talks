@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.nostrictnull.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true
+  },
+  "include": [
+    "src/**/*.js"
+  ]
+}
