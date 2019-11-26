@@ -1,10 +1,12 @@
 export const main = () => {
   const publicAccessor = () => {
+    // ❌
     class AppComponent {
       public handleChange() {}
       public render() {}
     }
 
+    // ✅
     class AppComponentOk {
       handleChange() {}
       render() {}
@@ -12,6 +14,8 @@ export const main = () => {
   }
 
   const privateAccessor = () => {
+    // ❌
+    // 1. no runtime privacy
     class GreeterService {
       private greeting = ''
       constructor(greeting: string) {
@@ -31,6 +35,11 @@ export const main = () => {
     // @ts-ignore
     serviceInstance.greeting = `You've been pawned`
 
+    // ============================================
+    //
+    // ============================================
+    // 2. nominal type checking
+
     class AppComponent {
       greeterService: GreeterService
       constructor(greeterService: GreeterService) {
@@ -44,6 +53,7 @@ export const main = () => {
 
     const test = () => {
       // const greeterServiceMock: Pick<GreeterService, 'greet'> = {
+      // const greeterServiceMock: GreeterService = {
       const greeterServiceMock = {
         greeting: '',
         greet: (who: string) => {

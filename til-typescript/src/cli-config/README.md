@@ -7,6 +7,8 @@
 tsc --init
 ```
 
+## Booting TS project with flags
+
 ```sh
 #
 tsc --init --module esnext --target esnext --moduleResolution node --sourceMap true --noEmit true --isolatedModules true --jsx preserve
@@ -24,12 +26,17 @@ tsc --showConfig
 tsc -p tsconfig.js.json --showConfig
 ```
 
+## Resolve compiled files
+
 ```sh
 # - Will print all files (not just files:[] like seen in showConfig)
 # - filter out with grep
-tsc p tsconfig.js.json --listFiles
+#
+# yarn w:cli tsc -p tsconfig.js.json
+tsc -p tsconfig.js.json --listFiles
 
-tsc p tsconfig.js.json --traceResolution
+# MORE Advanced!
+tsc -p tsconfig.js.json --traceResolution
 ```
 
 ## Debug
@@ -43,17 +50,17 @@ tsc --extendedDiagnostics
 
 ### typeRoots
 
-> List of folders to include type definitions from
+> "List of folders to include type definitions from"
 
 > eh? 🤷‍♂️🤯 ???!!!
 
-[Explanation](https://github.com/microsoft/TypeScript/issues/22217#issuecomment-369783776)
+**[Explanation](https://github.com/microsoft/TypeScript/issues/22217#issuecomment-369783776)**
 
-- List of folders to include GLOBAL type definitions from
+- ✅List of folders to include GLOBAL type definitions from
 
 #### Example
 
-> providing custom module types
+##### providing custom module types
 
 ```json
 {
@@ -78,23 +85,23 @@ Be explicit -> use `path` instead !
 }
 ```
 
-**What about global extensions?**
+##### What about global extensions?
 
 - declare `globals.d.ts` within your `include` files
 
-**What about vendor types extension?**
+##### What about vendor types extension?
 
 - create `extended-typings` and put there all overrides. Don't forget to add it to `includes`
 
 ### types
 
-> Type declaration files to be included in compilation.
+> "Type declaration files to be included in compilation."
 
-> eh?
+> eh? 🤷‍♂️🤯 ???!!!
 
-Explanation:
+**Explanation:**
 
-> Global type declaration module names to be included in compilation.
+- ✅Global type declaration module names to be included in compilation.
 
 #### Example
 

@@ -1,3 +1,4 @@
+// ❌
 const commonApproach = () => {
   interface Todo {
     id: string
@@ -14,6 +15,7 @@ const commonApproach = () => {
   }
 }
 
+// ✅
 // Better Approach !
 // - Runtime is source of truth
 // - provide same tokens via declaration merging

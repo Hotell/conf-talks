@@ -1,3 +1,5 @@
+// Let's say this is some standard API
+// exporting runtime entities and compile time TOKENS
 export interface UserModel {
   firstName: string
   lastName: string

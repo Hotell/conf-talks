@@ -1,5 +1,6 @@
 export const main = () => {
   const emptyObject = () => {
+    // ❌
     let emptyObj = {}
 
     // BETTER 1

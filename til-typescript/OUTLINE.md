@@ -9,6 +9,9 @@
 1. booting TS project
 1. getting TS config
 1. debug TS
+
+### Settings
+
 1. settings: `typeRoots`
 1. settings: `types`
 
@@ -16,39 +19,39 @@
 
 [docs](./src/language-features/README.md)
 
-1. class accessors
-1. namespaces
-1. enums
-1. interface vs type
-1. "empty object" type
-1. bivariance and covariance (TODO)
+1. [class accessors](./src/language-features/src/class-acessors.ts)
+1. [namespaces](./src/language-features/src/namespace.ts)
+1. [enums](./src/language-features/src/enums.ts)
+1. [interface vs type](./src/language-features/src/interface-vs-type.ts)
+1. ["empty object" type](./src/language-features/src/empty-object.ts)
+1. [function types - bivariance and contravariance](./src/language-features/src/function-types.ts)
 
 ## 3. API Tips
 
 [docs](./src/api-tips/README.md)
 
-1. declaration merging
-1. barrels and isolatedModules
+1. [declaration merging](./src/api-tips/src/declaration-merging/model.ts)
+1. [barrels and isolatedModules](./src/api-tips/src/reexporting-types-and-isolate-modules/api.ts)
 
 ## 4. React Tips
 
 [docs](./src/react-tips/README.md)
 
-1. everything about props:
+1. [everything about props:](./src/react-tips/src/tips-talk-demo.ts)
 
 - declaring component props
 - children
 - ReactNode
 - defaultProps
 
-2. JSX & web-components/AMP
+2. [JSX & web-components/AMP](./src/react-tips/src/web-components.ts)
 
 ## 5. Vanilla JavaScript
 
 [docs](./src/vanilla-js/README.md)
 
-1. tooling configuration
-1. make your lib consumers happy
+1. [tooling configuration](./src/vanilla-js/src/tools-config/webpack.config.js)
+1. [make your lib consumers happy](./src/vanilla-js/src/vanilla-js-libs-with-types/index.js)
 
 ## 6. TypeScript NodeJS
 

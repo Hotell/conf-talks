@@ -98,11 +98,15 @@ let emptyObj = {} as { who: string }
 let emptyObj = null as { who: string } | null
 ```
 
-## prefer function types instead method declaration (covariance,bivariance)
+## Prefer function types instead method declaration (contravariance, bivariance)
 
 **strictFunctionTypes:**
 
-Checking applies to all function types, except those originating in method or constructor declarations. Methods are excluded specifically to ensure generic classes and interfaces (such as Array<T>) continue to mostly relate covariantly.
+_Checking applies to all function types_, except those originating in method or constructor declarations.
+
+_Methods are excluded_ specifically to ensure generic classes and interfaces (such as Array<T>) continue to mostly relate covariantly.
+
+[more info](https://stackoverflow.com/questions/51767338/what-is-the-benefit-of-using-strictfunctiontypes-in-typescript)
 
 Avoid:
 
