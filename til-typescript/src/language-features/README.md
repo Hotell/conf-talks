@@ -100,7 +100,9 @@ let emptyObj = null as { who: string } | null
 
 ## prefer function types instead method declaration (covariance,bivariance)
 
-// @TODO -> WHY ????
+**strictFunctionTypes:**
+
+Checking applies to all function types, except those originating in method or constructor declarations. Methods are excluded specifically to ensure generic classes and interfaces (such as Array<T>) continue to mostly relate covariantly.
 
 Avoid:
 

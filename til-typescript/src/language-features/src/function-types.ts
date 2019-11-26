@@ -1,29 +1,24 @@
 export const main = () => {
-  // Avoid
-
-  interface CounterBivariance {
-    start(value: number): string
-    reset(): void
+  interface Animal {
+    type: string
   }
 
-  const counterMethod: CounterBivariance = {
-    start(val) {
-      return ''
-    },
-    reset() {}
+  interface Dog extends Animal {
+    bark: () => void
   }
 
-  // Prefer
-
-  interface CounterContra {
-    start: (value: number) => string
-    reset: () => void
+  interface AnimalManager<T> {
+    // Avoid 🚨
+    compare(a: T, b: T): number
+    // Prefer ✅
+    // compare: (a: T, b: T) => number
   }
 
-  const counterFunc: CounterContra = {
-    start(val) {
-      return ''
-    },
-    reset() {}
+  const dogManager: AnimalManager<Dog> = {
+    compare: (a, b) => {
+      return 1
+    }
   }
+
+  const animalManager: AnimalManager<Animal> = dogManager
 }
