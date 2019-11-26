@@ -3,20 +3,24 @@
 ## Booting TS project
 
 ```sh
+# yarn w:cli tsc
 tsc --init
 ```
 
 ```sh
+#
 tsc --init --module esnext --target esnext --moduleResolution node --sourceMap true --noEmit true --isolatedModules true --jsx preserve
 ```
 
 ## Resolve config
 
 ```sh
+# yarn w:cli tsc --showConfig
 tsc --showConfig
 ```
 
 ```sh
+# yarn w:cli tsc -p tsconfig.js.json --showConfig
 tsc -p tsconfig.js.json --showConfig
 ```
 
@@ -31,6 +35,7 @@ tsc p tsconfig.js.json --traceResolution
 ## Debug
 
 ```sh
+# yarn w:cli tsc --extendedDiagnostics
 tsc --extendedDiagnostics
 ```
 
@@ -40,9 +45,11 @@ tsc --extendedDiagnostics
 
 > List of folders to include type definitions from
 
-> eh?
+> eh? 🤷‍♂️🤯 ???!!!
 
 [Explanation](https://github.com/microsoft/TypeScript/issues/22217#issuecomment-369783776)
+
+- List of folders to include GLOBAL type definitions from
 
 #### Example
 
@@ -54,9 +61,9 @@ tsc --extendedDiagnostics
 }
 ```
 
-won't work until you add global -> `declare module 'greeter' {}`
+Won't work until you add global -> `declare module 'greeter' {}`
 
-Be explicit, and instead use `path` !
+Be explicit -> use `path` instead !
 
 > no declare module needed
 
