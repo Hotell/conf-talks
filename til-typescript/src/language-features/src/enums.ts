@@ -13,6 +13,96 @@ export const main = () => {
     const test = () => {
       // $ExpectError 💥 NOPE  🤯???!!!
       const test: Response.No = 4
+
+      function respond(recipient: string, message: Response) {}
+
+      // $ExpectError 💥 NOPE  🤯???!!!
+      respond('unknown', 4)
+    }
+  }
+
+  /**
+   * Idiomatic JS Enums (number) via object
+   */
+  const idiomaticEnums = () => {
+    const Response = {
+      No: 1,
+      Yes: 2
+    } as const
+
+    // merge implementation with "Enum" typed literal
+    type Response = ObjectValues<typeof Response>
+
+    const test = () => {
+      // $ExpectError 👉 ✅
+      const test: Response = 4
+
+      function respond(recipient: string, message: Response) {}
+
+      // $ExpectError 👉 ✅
+      respond('unknown', 4)
+    }
+  }
+
+  /**
+   * TypeScript String Enums
+   */
+  const stringEnums = () => {
+    enum Colors {
+      Red = 'RED',
+      Green = 'GREEN',
+      Blue = 'BLUE'
+    }
+
+    const test = () => {
+      // ERROR WAT 🤯???
+      const test: Colors.Red = 'RED'
+
+      function favoriteColor(name: string, color: Colors) {}
+
+      // ERROR WAT 🤯???
+      favoriteColor('unknown', 'RED')
+    }
+  }
+
+  /**
+   * Idiomatic JS Enums (string) via object
+   */
+  const idiomaticStringEnums = () => {
+    const Colors = {
+      Red: 'RED',
+      Green: 'GREEN',
+      Blue: 'BLUE'
+    } as const
+    // merge implementation with "Enum" typed literal
+    type Colors = ObjectValues<typeof Colors>
+
+    const test = () => {
+      // no ERROR ✅
+      const test: Colors = 'RED'
+
+      function favoriteColor(name: string, color: Colors) {}
+
+      // no ERROR ✅
+      favoriteColor('unknown', 'RED')
+    }
+  }
+}
+
+// ======================
+export const mainComplete = () => {
+  /**
+   * TypeScript Enums
+   */
+  const enums = () => {
+    enum Response {
+      No, // compiles to --> 1
+      Yes // compiles to --> 2
+    }
+
+    const test = () => {
+      // $ExpectError 💥 NOPE  🤯???!!!
+      const test: Response.No = 4
       // $ExpectError ✅
       const test2: Response.Yes = Response.No
       // $ExpectError ✅

@@ -12,6 +12,8 @@
 
 ### Settings
 
+> skip!
+
 1. settings: `typeRoots`
 1. settings: `types`
 
