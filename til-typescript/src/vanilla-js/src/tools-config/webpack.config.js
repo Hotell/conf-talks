@@ -1,21 +1,43 @@
-// @ts-check
+// 1. run webpack -> yarn w:js:webpack
+// 2. add type checking
+// 3. fix webpack
 
-const path = require('path')
 const root = path.resolve(__dirname)
 
-/**
- * @param {'development'} env
- */
-module.exports = (env) => {
-  /** @type {import('webpack').Configuration} */
+module.export = (env) => {
   const config = {
-    entry: path.resolve(root, './src/main.js'),
+    entry: path.resolve(root, './main.js'),
     output: {
-      filename: 'main.js',
+      filname: 'main.js',
       path: path.resolve(root, 'dist')
     },
-    mode: env
+    mode: env,
+    got: '#yourWatchHasEnded'
   }
 
   return config
 }
+
+// CORRECT VERSION
+
+// // @ts-check
+
+// const path = require('path')
+// const root = path.resolve(__dirname)
+
+// /**
+//  * @param {'development'} env
+//  */
+// module.exports = (env) => {
+//   /** @type {import('webpack').Configuration} */
+//   const config = {
+//     entry: path.resolve(root, './src/main.js'),
+//     output: {
+//       filename: 'main.js',
+//       path: path.resolve(root, 'dist')
+//     },
+//     mode: env
+//   }
+
+//   return config
+// }

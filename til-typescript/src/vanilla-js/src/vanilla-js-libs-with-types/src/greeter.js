@@ -1,10 +1,10 @@
+// @ts-check
+
 /**
- *
  * @param {string} greeting
  */
 export const Greeter = (greeting) => {
   /**
-   *
    * @param {string} who
    */
   const greet = (who) => {

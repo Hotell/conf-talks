@@ -112,3 +112,13 @@ _./cypress/tsconfig.json_
   }
 }
 ```
+
+_./tsconfig.no-globals.json_
+
+```json
+{
+  "compilerOptions": {
+    "types": []
+  }
+}
+```

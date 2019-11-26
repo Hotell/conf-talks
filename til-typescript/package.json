@@ -6,7 +6,15 @@
   "license": "MIT",
   "scripts": {
     "bundle": "webpack --config src/build-tools-config/finish/webpack.config.js --env development",
-    "bundle:check-js": "tsc -p src/build-tools-config/finish"
+    "bundle:check-js": "tsc -p src/build-tools-config/finish",
+    "w:cli": "yarn --cwd ./src/cli-config",
+    "w:api": "yarn --cwd ./src/api-tips",
+    "w:lang": "yarn --cwd ./src/language-features",
+    "w:react": "yarn --cwd ./src/react-tips",
+    "w:js": "yarn --cwd ./src/vanilla-js",
+    "w:js:webpack": "yarn --cwd ./src/vanilla-js/src/tools-config webpack --env development",
+    "w:js:types": "yarn tsc -p ./src/vanilla-js/src/vanilla-js-libs-with-types",
+    "w:node": "echo 'RUN NODE DUDE and IMPORT lib!  -> node -> const lib = require(./src/ts-node/src)'"
   },
   "devDependencies": {
     "@babel/core": "7.7.4",

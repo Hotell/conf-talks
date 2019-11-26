@@ -1,26 +1,37 @@
 export const main = () => {
-  {
+  const emptyObject = () => {
     let emptyObj = {}
+
+    // BETTER 1
     // let emptyObj: object = {}
-    // let emptyObj: {who:string} = {}
-    // let emptyObj = {} as { who: string }
-    // let emptyObj = null as { who: string } | null
+
+    // BETTER 2 - WONT WORK
     // let emptyObj: Record<string,string> = {}
+
+    // BETTER 3 - WONT WORK
+    // let emptyObj: {who:string} = {}
+    // BETTER 3
+    // let emptyObj = {} as { who: string }
+
+    // BETTER 4
+    // let emptyObj = null as { who: string } | null
     // let emptyObj: {who:string} | null = null
 
-    emptyObj = 'dfdfs'
-    emptyObj = () => {}
-    emptyObj = 1231
-    emptyObj = { que: 'passa' }
-    emptyObj = ['hello']
-    emptyObj = null
-    emptyObj = undefined
-    // emptyObj = { who: 'me' }
-    // emptyObj.what = 'sdfds'
-    // emptyObj.who = 'sdfds'
+    const test = () => {
+      emptyObj = 'who let the dogs out'
+      emptyObj = () => {}
+      emptyObj = 1231
+      emptyObj = { que: 'passa' }
+      emptyObj = ['hello']
+      emptyObj = null
+      emptyObj = undefined
+      emptyObj = { who: 'me' }
+      emptyObj.what = 'conf talk'
+      emptyObj.who = 'me dude'
+    }
   }
 
-  {
+  const emptyArray = () => {
     const emptyArr = [] as []
 
     emptyArr.push('dfdfs')

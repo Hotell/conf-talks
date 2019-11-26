@@ -10,18 +10,20 @@ class Greeter extends HTMLElement {
 }
 customElements.define('x-greeter', Greeter)
 
-declare global {
+// 1. Extend JSX namespace
+/* declare global {
   namespace JSX {
     interface IntrinsicElements {
       'x-greeter': Pick<Greeter, 'greet' | 'who'>
     }
   }
-}
+} */
 
 export const App = () => {
   return (
     <div>
-      <x-greeter greet="Hello" who="World"></x-greeter>
+      {/* prettier-ignore */}
+      {/* <x-greeter greet="Hello" who="World"></x-greeter> */}
     </div>
   )
 }

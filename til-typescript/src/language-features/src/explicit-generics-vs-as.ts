@@ -6,8 +6,9 @@ type User = {
   age: number
 }
 export const main = () => {
+  const inputRef = createRef<HTMLInputElement>()
   // const inputRef = createRef<HTMLInputElement | null>(null)
-  const inputRef = createRef(null as HTMLInputElement | null)
+  // const inputRef = createRef(null as HTMLInputElement | null)
 
   if (inputRef.current) {
     console.log(inputRef.current.value)
@@ -22,8 +23,6 @@ export const main = () => {
 }
 
 const createRef = <T>(initialValue?: T) => {
-  React.createRef()
-
   return {
     current: initialValue
   }
