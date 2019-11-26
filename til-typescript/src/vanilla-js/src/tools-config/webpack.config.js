@@ -6,7 +6,7 @@ const root = path.resolve(__dirname)
 
 module.export = (env) => {
   const config = {
-    entry: path.resolve(root, './main.js'),
+    entry: path.resolve(root, './src/main.js'),
     output: {
       filname: 'main.js',
       path: path.resolve(root, 'dist')

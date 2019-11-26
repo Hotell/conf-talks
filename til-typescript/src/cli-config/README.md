@@ -3,7 +3,7 @@
 ## Booting TS project
 
 ```sh
-# yarn w:cli tsc
+# yarn w:cli tsc --init
 tsc --init
 ```
 

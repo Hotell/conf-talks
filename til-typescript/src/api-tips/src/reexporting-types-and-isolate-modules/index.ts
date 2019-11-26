@@ -9,4 +9,5 @@ export * from './api'
 // export { createUser, UserModel } from './api'
 
 // ✅FIX
-// export { createUser, UserModel } from './api'
+// export type UserModel = import('./api').UserModel
+// export { createUser } from './api'

@@ -37,21 +37,21 @@
 
 [docs](./src/react-tips/README.md)
 
-1. [everything about props:](./src/react-tips/src/tips-talk-demo.ts)
+1. [everything about props:](./src/react-tips/src/tips-talk-demo.tsx)
 
 - declaring component props
 - children
 - ReactNode
 - defaultProps
 
-2. [JSX & web-components/AMP](./src/react-tips/src/web-components.ts)
+2. [JSX & web-components/AMP](./src/react-tips/src/web-components.tsx)
 
 ## 5. Vanilla JavaScript
 
 [docs](./src/vanilla-js/README.md)
 
 1. [tooling configuration](./src/vanilla-js/src/tools-config/webpack.config.js)
-1. [make your lib consumers happy](./src/vanilla-js/src/vanilla-js-libs-with-types/index.js)
+1. [make your lib consumers happy](./src/vanilla-js/src/vanilla-js-libs-with-types/src/index.js)
 
 ## 6. TypeScript NodeJS
 

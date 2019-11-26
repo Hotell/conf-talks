@@ -6,17 +6,13 @@ export const main = () => {
     // BETTER 1
     // let emptyObj: object = {}
 
-    // BETTER 2 - WONT WORK
-    // let emptyObj: Record<string,string> = {}
+    // BETTER 2
+    // let emptyObj: Record<string, string> = {}
 
     // BETTER 3 - WONT WORK
     // let emptyObj: {who:string} = {}
     // BETTER 3
     // let emptyObj = {} as { who: string }
-
-    // BETTER 4
-    // let emptyObj = null as { who: string } | null
-    // let emptyObj: {who:string} | null = null
 
     const test = () => {
       emptyObj = 'who let the dogs out'

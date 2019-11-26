@@ -6,11 +6,9 @@ export const main = () => {
    */
   const enums = () => {
     enum Response {
-      No,
-      Yes
+      No, // compiles to --> 1
+      Yes // compiles to --> 2
     }
-
-    function respond(recipient: string, message: Response) {}
 
     const test = () => {
       // $ExpectError 💥 NOPE  🤯???!!!
@@ -19,6 +17,8 @@ export const main = () => {
       const test2: Response.Yes = Response.No
       // $ExpectError ✅
       const test3: Response.Yes = 'hello'
+
+      function respond(recipient: string, message: Response) {}
 
       // $ExpectError 💥 NOPE  🤯???!!!
       respond('unknown', 4)
@@ -41,8 +41,6 @@ export const main = () => {
     // merge implementation with "Enum" typed literal
     type Response = ObjectValues<typeof Response>
 
-    function respond(recipient: string, message: Response) {}
-
     const test = () => {
       // $ExpectError 👉 ✅
       const test: Response = 4
@@ -50,6 +48,8 @@ export const main = () => {
       const test2: Response = Response.No
       // $ExpectError ✅
       const test3: Response = 'hello'
+
+      function respond(recipient: string, message: Response) {}
 
       // $ExpectError 👉 ✅
       respond('unknown', 4)
@@ -71,14 +71,14 @@ export const main = () => {
       Blue = 'BLUE'
     }
 
-    function favoriteColor(name: string, color: Colors) {}
-
     const test = () => {
       // $ExpectError 🤯???
       const test: Colors.Red = 'RED'
       // $ExpectError 🤯???
       const test2: Colors = 'RED'
       const test3: Colors = Colors.Red
+
+      function favoriteColor(name: string, color: Colors) {}
 
       // $ExpectError 🤯???
       favoriteColor('unknown', 'RED')
@@ -99,14 +99,14 @@ export const main = () => {
     // merge implementation with "Enum" typed literal
     type Colors = ObjectValues<typeof Colors>
 
-    function favoriteColor(name: string, color: Colors) {}
-
     const test = () => {
       // 👉 yup no ERROR ✅
       const test: Colors = 'RED'
       // 👉 yup no ERROR ✅
       const test2: Colors = 'RED'
       const test3: Colors = Colors.Red
+
+      function favoriteColor(name: string, color: Colors) {}
 
       // 👉 yup no ERROR ✅
       favoriteColor('unknown', 'RED')

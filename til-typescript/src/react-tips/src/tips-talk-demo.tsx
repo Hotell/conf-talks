@@ -1,6 +1,6 @@
 import React from 'react'
 
-type Props = { title: React.ReactNode }
+type Props = { title: string }
 
 // 1. EXCUSE ME! who annotated children ?
 // 2. proper prop types
