@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "scripts": {
+    "bundle": "yarn webpack --config webpack.config.js --env development",
+    "tsc": "../../../../node_modules/.bin/tsc",
+    "webpack": "../../../../node_modules/.bin/webpack"
+  }
+}
