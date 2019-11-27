@@ -32,8 +32,8 @@
 
 [docs](./src/api-tips/README.md)
 
-1. [declaration merging](./src/api-tips/src/declaration-merging/model.ts)
-1. [barrels and isolatedModules](./src/api-tips/src/reexporting-types-and-isolate-modules/api.ts)
+1. [impl as a source of truth/declaration merging](./src/api-tips/src/declaration-merging/model.ts)
+1. [public API and isolatedModules](./src/api-tips/src/reexporting-types-and-isolate-modules/api.ts)
 
 ## 4. React Tips
 
@@ -59,4 +59,6 @@
 
 [docs](./src/ts-node/README.md)
 
-1. use typescript for node without compilation
+## END
+
+> BACK TO SLIDES MISTER !
