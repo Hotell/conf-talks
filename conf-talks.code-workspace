@@ -17,6 +17,7 @@
     }
   ],
   "settings": {
-    "editor.snippetSuggestions": "inline"
+    "editor.snippetSuggestions": "inline",
+    "typescript.tsdk": "til-typescript/node_modules/typescript/lib"
   }
 }
