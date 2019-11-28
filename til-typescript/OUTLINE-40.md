@@ -10,9 +10,7 @@
 1. getting TS config
 1. debug TS
 
-### Settings
-
-> skip!
+### Settings (skip)
 
 1. settings: `typeRoots`
 1. settings: `types`
@@ -26,9 +24,6 @@
 1. [enums](./src/language-features/src/enums.ts)
 1. [interface vs type](./src/language-features/src/interface-vs-type.ts)
 1. ["empty object" type](./src/language-features/src/empty-object.ts)
-
-### SKIP
-
 1. [function types - bivariance and contravariance](./src/language-features/src/function-types.ts)
 
 ## 3. API Tips
@@ -42,14 +37,12 @@
 
 [docs](./src/react-tips/README.md)
 
-1. [everything about props:](./src/react-tips/src/tips-talk-demo.tsx)
+1. [everything about props:](./src/react-tips/src/live-coding-demo.tsx)
 
 - declaring component props
 - children
 - ReactNode
 - defaultProps
-
-### SKIP
 
 2. [JSX & web-components/AMP](./src/react-tips/src/web-components.tsx)
 

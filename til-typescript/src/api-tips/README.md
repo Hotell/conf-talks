@@ -14,12 +14,18 @@ Prevent isolateModules errors when re-exporting types
 
 ## (Optional) Allow API extensibility via `declare`
 
+@TODO
+
 Analytics example -> how to extend Events interface
 
 ## (Optional) ReturnType of generic function
 
+@TODO
+
 https://stackoverflow.com/questions/50321419/typescript-returntype-of-generic-function/50321754#50321754
 
 ## (Optional) Narrow generic function union return to proper output (discriminant unions but for return type)
+
+@TODO
 
 https://stackoverflow.com/questions/57349647/typescript-how-to-return-proper-type-from-generic-function-constrained-by-looku/57350048#57350048

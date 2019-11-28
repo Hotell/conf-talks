@@ -8,6 +8,6 @@ export * from './api'
 // 🚨 EXPECT ERROR
 // export { createUser, UserModel } from './api'
 
-// ✅FIX
+// ✅FIX (NOTE -> Beware Generics 👀)
 // export type UserModel = import('./api').UserModel
 // export { createUser } from './api'

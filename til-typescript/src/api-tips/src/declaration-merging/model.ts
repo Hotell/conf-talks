@@ -17,7 +17,7 @@ const commonApproach = () => {
 
 // ✅
 // Better Approach !
-// - Runtime is source of truth
+// - implementation is source of truth
 // - provide same tokens via declaration merging
 
 export const Todo = (title: string) => {
@@ -29,3 +29,6 @@ export const Todo = (title: string) => {
 }
 
 export type Todo = ReturnType<typeof Todo>
+
+// Todo token is merged -> so it will reference to both TYPE and RUNTIME callable(function)
+// -> Less API churn ✅
