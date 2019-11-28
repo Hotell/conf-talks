@@ -7,6 +7,17 @@ export * from './api'
 
 // 🚨 EXPECT ERROR
 // export { createUser, UserModel } from './api'
+//
+// -----
+// babel
+// ↓ ↓ ↓
+// export { createUser, UserModel } from './api'
+//
+// api.ts
+// ↓ ↓ ↓
+// NO UserModel !!!
+// export const createUser = () => {}
+// export const formatUserName = (user) => {}
 
 // ✅FIX (NOTE -> Beware Generics 👀)
 // export type UserModel = import('./api').UserModel

@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "build": "babel *.ts -d dist -x .ts --presets '@babel/preset-typescript'"
+  }
+}

@@ -12,6 +12,10 @@ Export Todo = ReturnType<typeof Todo>
 
 Prevent isolateModules errors when re-exporting types
 
+## (Optional) Unused generics issue
+
+You should never have type parameters which are unused. The type will have unexpected compatibility (as shown here) and will also fail to have proper generic type inference in function calls.
+
 ## (Optional) Allow API extensibility via `declare`
 
 @TODO
