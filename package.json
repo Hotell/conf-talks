@@ -1,0 +1,6 @@
+{
+  "private": true,
+  "scripts": {
+    "remove-lock-files": "find ./ -name 'yarn.lock' -delete"
+  }
+}
