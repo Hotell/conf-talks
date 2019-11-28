@@ -6,13 +6,29 @@
   "license": "MIT",
   "scripts": {
     "bundle": "webpack --config src/build-tools-config/finish/webpack.config.js --env development",
-    "bundle:check-js": "tsc -p src/build-tools-config/finish"
+    "bundle:check-js": "tsc -p src/build-tools-config/finish",
+    "w:cli": "yarn --cwd ./src/cli-config",
+    "w:api": "yarn --cwd ./src/api-tips",
+    "w:api:isolateModules": "yarn --cwd ./src/api-tips/src/reexporting-types-and-isolate-modules build",
+    "w:lang": "yarn --cwd ./src/language-features",
+    "w:react": "yarn --cwd ./src/react-tips",
+    "w:js": "yarn --cwd ./src/vanilla-js",
+    "w:js:webpack": "yarn --cwd ./src/vanilla-js/src/tools-config webpack --env development",
+    "w:js:types": "yarn tsc -p ./src/vanilla-js/src/vanilla-js-libs-with-types",
+    "w:node": "echo 'RUN NODE DUDE and IMPORT lib!  -> node -> const lib = require(./src/ts-node/src)'"
   },
   "devDependencies": {
-    "@types/node": "8",
-    "@types/webpack": "4.4.32",
-    "typescript": "3.4.5",
-    "webpack": "4.32.2",
-    "webpack-cli": "3.3.2"
+    "@babel/core": "7.7.4",
+    "@babel/cli": "7.7.4",
+    "@babel/register": "7.7.4",
+    "@babel/preset-env": "7.7.4",
+    "@babel/preset-typescript": "7.7.4",
+    "@types/node": "10",
+    "@types/webpack": "4.41.0",
+    "@types/react": "16.9.13",
+    "@types/react-dom": "16.9.4",
+    "typescript": "3.7.2",
+    "webpack": "4.41.2",
+    "webpack-cli": "3.3.10"
   }
 }
