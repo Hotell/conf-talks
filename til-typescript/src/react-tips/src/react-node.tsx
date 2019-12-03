@@ -12,7 +12,7 @@ const Section = (props: {
 
 const SectionGood = (props: {
   title: string
-  children: [React.ReactChild, React.ReactChild]
+  children: React.ReactChild | React.ReactChild[]
 }) => {
   return (
     <section>
@@ -26,21 +26,22 @@ export const App = () => {
   return (
     <>
       <div>
-        {/* 🚨EXPECT ERROR */}
-        {/* <Section title="Hello!"></Section> */}
-
+        {/* 🚨 NO ERRORS !!! */}
         {/* <Section title={[]}> */}
         {/* <Section title={123}> */}
         {/* <Section title={null}> */}
         <Section title="Hello">
           Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          {/* 🚨 NO ERRORS !!! */}
+          {/* {{}}{[]} */}
+          {/* {null} */}
         </Section>
       </div>
+
       <div>
-        {/* 🚨EXPECT ERROR */}
+        {/* ✅EXPECT ERROR */}
         {/* <SectionGood title={{}}> */}
         <SectionGood title="Hello">
-          <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
           <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
         </SectionGood>
       </div>
