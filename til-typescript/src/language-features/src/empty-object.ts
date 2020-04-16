@@ -1,7 +1,6 @@
 export const main = () => {
   const emptyObject = () => {
-    // ❌
-    let emptyObj = {}
+    let emptyObj: {} = {}
 
     // BETTER 1
     // let emptyObj: object = {}
@@ -9,19 +8,27 @@ export const main = () => {
     // BETTER 2
     // let emptyObj: Record<string, string> = {}
 
-    // BETTER 3 - WONT WORK
-    // let emptyObj: {who:string} = {}
-    // BETTER 3
+    // BETTER 3a
     // let emptyObj = {} as { who: string }
+    // BETTER 3b
+    // let emptyObj: { who?: string } = {}
 
     const test = () => {
-      emptyObj = 'who let the dogs out'
-      emptyObj = () => {}
-      emptyObj = 1231
-      emptyObj = { que: 'passa' }
-      emptyObj = ['hello']
+      // 1. null & undefined
       emptyObj = null
       emptyObj = undefined
+
+      // 2. primitive values
+      emptyObj = 'who let the dogs out'
+      emptyObj = 123
+      emptyObj = false
+
+      // 3. JavaScript Object
+      emptyObj = () => {}
+      emptyObj = { que: 'passa' }
+      emptyObj = ['hello']
+
+      // 4. exact dictionary shape
       emptyObj = { who: 'me' }
       emptyObj.what = 'conf talk'
       emptyObj.who = 'me dude'
