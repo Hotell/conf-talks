@@ -14,7 +14,9 @@ export const main = () => {
       // $ExpectError 💥 NOPE  🤯???!!!
       const test: Response.No = 4
 
-      function respond(recipient: string, message: Response) {}
+      function respond(recipient: string, message: Response) {
+        /* ...implementation... */
+      }
 
       // $ExpectError 💥 NOPE  🤯???!!!
       respond('unknown', 4)
@@ -37,7 +39,9 @@ export const main = () => {
       // $ExpectError 👉 ✅
       const test: Response = 4
 
-      function respond(recipient: string, message: Response) {}
+      function respond(recipient: string, message: Response) {
+        /* ...implementation... */
+      }
 
       // $ExpectError 👉 ✅
       respond('unknown', 4)
@@ -58,7 +62,9 @@ export const main = () => {
       // ERROR WAT 🤯???
       const test: Colors.Red = 'RED'
 
-      function favoriteColor(name: string, color: Colors) {}
+      function favoriteColor(name: string, color: Colors) {
+        /* ...implementation... */
+      }
 
       // ERROR WAT 🤯???
       favoriteColor('unknown', 'RED')
@@ -81,7 +87,9 @@ export const main = () => {
       // no ERROR ✅
       const test: Colors = 'RED'
 
-      function favoriteColor(name: string, color: Colors) {}
+      function favoriteColor(name: string, color: Colors) {
+        /* ...implementation... */
+      }
 
       // no ERROR ✅
       favoriteColor('unknown', 'RED')
