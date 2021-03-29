@@ -1,0 +1,34 @@
+{
+  "implicitDependencies": {
+    "workspace.json": "*",
+    "package.json": { "dependencies": "*", "devDependencies": "*" },
+    "tsconfig.base.json": "*",
+    "tslint.json": "*",
+    ".eslintrc.json": "*",
+    "nx.json": "*"
+  },
+  "affected": { "defaultBase": "master" },
+  "npmScope": "my-org",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e",
+          "build-storybook"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "skate-shop": { "tags": [] },
+    "skate-shop-e2e": { "tags": [], "implicitDependencies": ["skate-shop"] },
+    "ui-header": { "tags": [] },
+    "todos-app": { "tags": [] },
+    "todos-app-e2e": { "tags": [], "implicitDependencies": ["todos-app"] },
+    "ui-header-e2e": { "tags": [], "implicitDependencies": ["ui-header"] }
+  }
+}
