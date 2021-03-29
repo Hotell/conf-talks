@@ -7,7 +7,7 @@ npx create-nx-workspace
 1. answer questions
 
 ```
-? Workspace name (e.g., org name)     myorg
+? Workspace name (e.g., org name)     my-org
 ? What to create in the new workspace react
 ? Application name                    skate-shop
 ? Default stylesheet format           CSS
@@ -115,11 +115,27 @@ yarn nx run ui-header:storybook
 
 1. show dep graph
 
+```
+yarn nx dep-graph
+```
+
 1. ci - affected
 
-1.1. commit
+```
+yarn nx affected:apps
+yarn nx affected:libs
 
-1.1. do change
+yarn nx affected:dep-graph
+```
 
-1.1. nx affected
-1.1. nx graph affected
+- commit
+- do change
+
+  1.1. nx affected & graph
+
+```
+yarn nx affected:apps
+yarn nx affected:libs
+
+yarn nx affected:dep-graph
+```
