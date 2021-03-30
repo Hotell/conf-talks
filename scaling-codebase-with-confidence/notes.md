@@ -1,7 +1,7 @@
 1. boot
 
 ```sh
-npx create-nx-workspace
+npx create-nx-workspace --packageManager=yarn
 ```
 
 1. answer questions
@@ -62,7 +62,7 @@ export function UiHeader(props: UiHeaderProps) {
 }
 ```
 
-1. use library in app
+- use library in app
 
 ```tsx
 import { UiHeader } from '@my-org/ui-header'
@@ -76,7 +76,7 @@ export function App() {
 }
 ```
 
-1. create app
+1. create todos app
 
 ```
 yarn nx g @nrwl/react:app todos-app
@@ -119,23 +119,27 @@ yarn nx run ui-header:storybook
 yarn nx dep-graph
 ```
 
+1. show local caching
+
+```sh
+yarn nx run todos-app:build
+
+rm -rf dist
+
+# instant !
+yarn nx run todos-app:build
+```
+
 1. ci - affected
-
-```
-yarn nx affected:apps
-yarn nx affected:libs
-
-yarn nx affected:dep-graph
-```
 
 - commit
 - do change
 
   1.1. nx affected & graph
 
-```
-yarn nx affected:apps
-yarn nx affected:libs
+```sh
+yarn nx affected:apps --base=HEAD~1
+yarn nx affected:libs --base=HEAD~1
 
-yarn nx affected:dep-graph
+yarn nx affected:dep-graph --base=HEAD~1
 ```
