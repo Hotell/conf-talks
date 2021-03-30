@@ -1,0 +1,331 @@
+{
+  "version": 2,
+  "cli": {
+    "defaultCollection": "@nrwl/react"
+  },
+  "defaultProject": "skate-shop",
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "style": "css",
+        "linter": "eslint",
+        "babel": true
+      },
+      "component": {
+        "style": "css"
+      },
+      "library": {
+        "style": "css",
+        "linter": "eslint"
+      }
+    }
+  },
+  "projects": {
+    "skate-shop": {
+      "root": "apps/skate-shop",
+      "sourceRoot": "apps/skate-shop/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/apps/skate-shop",
+            "index": "apps/skate-shop/src/index.html",
+            "main": "apps/skate-shop/src/main.tsx",
+            "polyfills": "apps/skate-shop/src/polyfills.ts",
+            "tsConfig": "apps/skate-shop/tsconfig.app.json",
+            "assets": [
+              "apps/skate-shop/src/favicon.ico",
+              "apps/skate-shop/src/assets"
+            ],
+            "styles": [
+              "apps/skate-shop/src/styles.css"
+            ],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/skate-shop/src/environments/environment.ts",
+                  "with": "apps/skate-shop/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "skate-shop:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "skate-shop:build:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/skate-shop/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/skate-shop"
+          ],
+          "options": {
+            "jestConfig": "apps/skate-shop/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "skate-shop-e2e": {
+      "root": "apps/skate-shop-e2e",
+      "sourceRoot": "apps/skate-shop-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/skate-shop-e2e/cypress.json",
+            "tsConfig": "apps/skate-shop-e2e/tsconfig.e2e.json",
+            "devServerTarget": "skate-shop:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "skate-shop:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/skate-shop-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    },
+    "ui-header": {
+      "root": "libs/ui-header",
+      "sourceRoot": "libs/ui-header/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ui-header/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/ui-header"
+          ],
+          "options": {
+            "jestConfig": "libs/ui-header/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "executor": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/ui-header/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "executor": "@nrwl/storybook:build",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/ui-header",
+            "config": {
+              "configFolder": "libs/ui-header/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "todos-app": {
+      "root": "apps/todos-app",
+      "sourceRoot": "apps/todos-app/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/apps/todos-app",
+            "index": "apps/todos-app/src/index.html",
+            "main": "apps/todos-app/src/main.tsx",
+            "polyfills": "apps/todos-app/src/polyfills.ts",
+            "tsConfig": "apps/todos-app/tsconfig.app.json",
+            "assets": [
+              "apps/todos-app/src/favicon.ico",
+              "apps/todos-app/src/assets"
+            ],
+            "styles": [
+              "apps/todos-app/src/styles.css"
+            ],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/todos-app/src/environments/environment.ts",
+                  "with": "apps/todos-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "todos-app:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "todos-app:build:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/todos-app/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/todos-app"
+          ],
+          "options": {
+            "jestConfig": "apps/todos-app/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "todos-app-e2e": {
+      "root": "apps/todos-app-e2e",
+      "sourceRoot": "apps/todos-app-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/todos-app-e2e/cypress.json",
+            "tsConfig": "apps/todos-app-e2e/tsconfig.e2e.json",
+            "devServerTarget": "todos-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "todos-app:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/todos-app-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    },
+    "ui-header-e2e": {
+      "root": "apps/ui-header-e2e",
+      "sourceRoot": "apps/ui-header-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/ui-header-e2e/cypress.json",
+            "tsConfig": "apps/ui-header-e2e/tsconfig.e2e.json",
+            "devServerTarget": "ui-header:storybook"
+          },
+          "configurations": {
+            "ci": {
+              "devServerTarget": "ui-header:storybook:ci"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/ui-header-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
